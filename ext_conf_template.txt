@@ -1,0 +1,2 @@
+   # cat=Sitemap; type=string; label=lightbox class
+lightboxCls =

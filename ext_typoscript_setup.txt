@@ -1,0 +1,70 @@
+plugin.tx_TqSlideshow {
+
+	listViewPageId	= {$plugin.tx_tq_slideshow.ListViewPageId}
+
+	image = IMG_RESOURCE
+	image {
+		file = IMAGE
+		file {
+			import.field = image
+			width.field = width
+			height.field = height
+		}
+	}
+}
+
+plugin.tx_TqSlideshow.engines {
+	tqSlideshow {
+        name = tqSlideshow
+		js {
+			1	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/tqslideshow.js
+			2	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/thumbnail.js
+			3	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/jquery.cycle.all.js
+			4	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/jquery.bxSlider.js
+			5	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/tqslideshow_addon.js
+		}
+		css {
+			1	= typo3conf/ext/tq_slideshow/Resources/Public/css/skin.css
+			2	= typo3conf/ext/tq_slideshow/Resources/Public/css/tqSlideshow.css
+
+		}
+	}
+}
+
+
+plugin.tx_TqSlideshow.effectListThumbnail {
+	fade		= fade
+	show		= show
+	slideDown	= slideDown
+}
+
+plugin.tx_TqSlideshow.effectList {
+	blindX		= blindX
+	blindY		= blindY
+	blindZ		= blindZ
+	cover		= cover
+	curtainX	= curtainX
+	curtainY	= curtainY
+	fade		= fade
+	fadeZoom	= fadeZoom
+	growX		= growX
+	growY		= growY
+	none		= none
+	scrollUp	= scrollUp
+	scrollDown  = scrollDown
+	scrollLeft  = scrollLeft
+	scrollRight = scrollRight
+	scrollHorz = scrollHorz
+	scrollVert = scrollVert
+	shuffle		= shuffle
+	slideX		= slideX
+	slideY		= slideY
+	toss		= toss
+	turnUp		= turnUp
+	turnDown	= turnDown
+	turnLeft	= turnLeft
+	turnRight	= turnRight
+	uncover		= uncover
+	wipe		= wipe
+	zoom		= zoom
+}

@@ -1,0 +1,194 @@
+.tqslideshow-horizontal-thumbnails {
+	top: 17px;
+	right: 0px;
+}
+
+
+.slideshow-wrapper .thumbnail-list-wrapper {
+	z-index: 20;
+	height: 272px;
+	width: 200px;
+	float:left;
+}
+
+.slideshow-wrapper .slideshow-image {
+	position: relative;
+}
+
+.slideshow-wrapper .slideshow-preview-text {
+	position: absolute;
+	right: 20px;
+	bottom: 20px;
+}
+
+.slideshow-thumbnail-list-wrapper {
+	left: 20%;
+    margin: auto;
+    position: absolute;
+    width: 516px;
+	z-index: 10;
+	bottom: 0px;
+	height: 70px;
+}
+
+
+.slideshow-wrapper {
+	position: relative;
+	width: 100%;
+	height: 408px;
+
+}
+
+.slideshow-wrapper .slideshow {
+	width: 100%;
+	height: 100%;
+}
+
+.slideshow-controls .controller-wrapper {
+	width: 30px;
+	position: absolute;
+	height: 100%;
+	z-index: 10;
+}
+
+.slideshow-controls .backward-wrapper {
+	left: 0px;
+}
+
+
+.slideshow-controls .forward-wrapper {
+	right: 15px;
+}
+
+.slideshow-controls .forward-wrapper .controller,
+.slideshow-controls .backward-wrapper .controller {
+	display: none;
+}
+
+
+
+.slideshow-controls .forward-wrapper:hover .controller,
+.slideshow-controls .backward-wrapper:hover .controller {
+	display: block;
+}
+
+
+.slideshow-controls .backward-wrapper .controller,
+.slideshow-controls .forward-wrapper .controller {
+	display: block;
+	position: absolute;
+	background:transparent;
+	top: 50%;
+	cursor: pointer;
+	font-size: 0px;
+	width: 32px;
+	height: 32px;
+	background-repeat: no-repeat;
+}
+
+
+.slideshow-controls .backward-wrapper .controller {
+		background-image: url(../Icons/arrow-left.png);
+}
+
+.slideshow-controls .forward-wrapper .controller {
+	background-image: url(../Icons/arrow-right.png);
+}
+
+
+.slideshow .slideshow-preview-text {
+    background-color: #ccc;
+    color: black;
+    font: 10px/15px Arial,Helvetica,sans-serif;
+    opacity: 0.9;
+    padding: 10px 13px;
+    position: absolute;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	display: block;
+	z-index: 5;
+	height: 140px;
+	border-radius: 0px 0px 10px 10px;
+	-moz-box-shadow: 0px 4px 10px #000;
+	-webkit-box-shadow: 0px 4px 10px #000;
+	box-shadow: 0px 4px 10px #000;
+
+}
+
+
+slideshow-preview-text.preview-text-0 {
+	  background-color: #09c5d9;
+}
+
+
+slideshow-preview-text.preview-text-1 {
+	  background-color: #757d01;
+}
+
+
+ul.slideshow-thumbnail-list {
+	left: 0px;
+	right: 100px;
+	height: 100%;
+	bottom: 0px ;
+	position: absolute;
+}
+
+ul.slideshow-thumbnail-list li {
+	float:left;
+	width: 143px;
+	padding:0 10px;
+}
+
+ul.slideshow-thumbnail-list li img {
+		opacity: 0.5;
+		border: 1px solid #f1f1f1;
+}
+
+ul.slideshow-thumbnail-list li img:hover {
+		cursor: pointer;
+}
+
+ul.slideshow-thumbnail-list li.active img {
+		opacity: 1;
+}
+
+
+
+div.slideshow-toolbar-wrapper {
+	position: absolute;
+	bottom: -20px;
+	z-index: 100;
+	left: 40%;
+}
+
+
+div.slideshow-toolbar-wrapper ul  {
+	list-style: none;
+}
+
+div.slideshow-toolbar-wrapper ul li {
+	float:left;
+	padding: 5px;
+	height: 10px;
+}
+
+
+div.slideshow-toolbar-wrapper ul li.active span {
+ background-image: url(../Icons/ui-radio-button.png);
+}
+
+
+div.slideshow-toolbar-wrapper ul li span {
+    background: transparent;
+    background-image: url(../Icons/ui-radio-button-uncheck.png);
+    border-radius: 15px 15px 15px 15px;
+    display: block;
+    float: left;
+    height: 16px;
+    margin: 0 5px;
+    text-indent: -9999px;
+    width: 16px;
+	cursor: pointer;
+}

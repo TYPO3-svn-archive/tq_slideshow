@@ -1,0 +1,57 @@
+<script type="text/javascript">
+$(document).ready(function() {
+
+
+<f:format.html parseFuncTSPath="">
+$('#slideshow-{contentId}').tqSlideshow( {slideshowOption});
+</f:format.html>
+});
+</script>
+
+ <div id="slideshow-wrapper-{contentId}" class="slideshow-wrapper">
+	<div id="slideshow-toolbar-wrapper-{contentId}" class="slideshow-toolbar-wrapper">
+		<ul id="toolbar-list-{contentId}" class="slideshow-toolbar"></ul>
+		<br class="styleClear"/>
+	</div>
+	<div id="slideshow-{contentId}-controls" class="slideshow-controls">
+		<div class="backward-wrapper controller-wrapper">
+			<div class ="backward controller" href="#">
+				<span class="backward-icon backward-icon-{contentId}">Prev</span>
+			</div>
+		</div>
+		<div class="forward-wrapper controller-wrapper">
+			<div class ="forward controller" href="#">
+				<span class="forward-icon forward-icon-{contentId}">Next</span>
+			</div>
+		</div>
+    </div>
+	 <div id="slideshow-{contentId}" class="slideshow">
+			<f:for each="{imageList}" as="image" key="number">
+				<div class="imageContainer-{contentId}">
+					<f:format.html parseFuncTSPath="">{image.renderdLink}</f:format.html>
+					<f:if condition="{image.preview}">
+						<span class="slideshow-preview-text preview-text-{number}">
+						<f:format.html>{image.preview}</f:format.html>
+						</span>
+					</f:if>
+				</div>
+			</f:for>
+	</div>
+	 <div id="slideshow-thumbnail-list-wrapper-{contentId}" class="slideshow-thumbnail-list-wrapper jcarousel-skin-teqneers">
+		 <ul id="slideshow-thumbnail-list-{contentId}" class="slideshow-thumbnail-list">
+			 <f:for each="{imageList}" as="image" key="number">
+				<li class="thumbnail-{contentId}">
+					<img src="{image.thumbnail}" alt="thumbnail">
+				</li>
+			</f:for>
+		</ul>
+		 <br class="styleClear"/>
+	 </div>
+ </div>
+
+<div style="display:none;">
+	<f:format.html>{content}</f:format.html>
+</div>
+
+
+

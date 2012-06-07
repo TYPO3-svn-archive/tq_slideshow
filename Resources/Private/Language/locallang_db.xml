@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+	<meta type="array">
+		<type>database</type>
+		<description>Language labels for database tables/fields belonging to extension 'pv_author'</description>
+	</meta>
+	<data type="array">
+		<languageKey index="default" type="array">
+
+			<label index="tx_TqSlideshow.sheet_general">General</label>
+			<label index="tx_TqSlideshow.sheet_settings">Settings</label>
+			<label index="tx_TqSlideshow.sheet_images">Images</label>
+			<label index="tx_TqSlideshow.sheet_thumbnails">Thumbnails</label>
+			<label index="tx_TqSlideshow.sheet_toolbar">Toolbar</label>
+			<label index="tx_TqSlideshow.sheet_buttons">Buttons</label>
+
+			<label index="tx_TqSlideshow.titletext">Text</label>
+			<label index="tx_TqSlideshow.image">Image</label>
+			<label index="tx_TqSlideshow.thumbnail_alt">Alternative thumbnail</label>
+
+			<label index="tx_TqSlideshow.changeTime">Autochange</label>
+
+			<label index="tx_TqSlideshow.imageWidth">Image width</label>
+			<label index="tx_TqSlideshow.imageHeight">Image height</label>
+
+			<label index="tx_TqSlideshow.effect">Transition</label>
+			<label index="tx_TqSlideshow.youtube-link">Link to youtube-video</label>
+			<label index="tx_TqSlideshow.link">Link to Page</label>
+			<label index="tx_TqSlideshow.is_lightbox">Open Target in Lightbox</label>
+			<label index="tx_TqSlideshow.connect_lightbox">Connect in Lightbox</label>
+			<label index="tx_TqSlideshow.preview">Preview</label>
+			<label index="tx_TqSlideshow.description">Description</label>
+			<label index="tx_TqSlideshow.alttext">Image-Alt-Tag</label>
+			<label index="tx_TqSlideshow.thumbnailWidth">Thumbnail width</label>
+			<label index="tx_TqSlideshow.thumbnailHeight">Thumbnail height</label>
+
+			<label index="tx_TqSlideshow.numberOfThumbnailsToDisplay">Thumbnail numbers to show</label>
+
+			<label index="tx_TqSlideshow.carousel">Carousel for thumbnails</label>
+			<label index="tx_TqSlideshow.engine">Engine</label>
+
+			<label index="tx_TqSlideshow.keyEvents">Key events</label>
+
+			<label index="tx_TqSlideshow.mode">Mode</label>
+			<label index="tx_TqSlideshow.mode.normal">Normal</label>
+			<label index="tx_TqSlideshow.mode.random">random</label>
+
+			<label index="tx_TqSlideshow.lightbox_width">Lightbox width</label>
+			<label index="tx_TqSlideshow.lightbox_height">Lightbox height</label>
+
+			<label index="tx_TqSlideshow.showThumbnails">Show Thumbnails</label>
+			<label index="tx_TqSlideshow.showToolbar">Show Toolbar</label>
+
+			<label index="tx_TqSlideshow.showButtons">Show Buttons</label>
+			<label index="tx_TqSlideshow.showDescription">Show Description</label>
+
+			<label index="tx_TqSlideshow.templateFile">Template</label>
+
+			<label index="tx_TqSlideshow.thumbnailDirectionHorizon">horizon</label>
+			<label index="tx_TqSlideshow.thumbnailDirectionVertical">vertical</label>
+
+			<label index="tx_TqSlideshow.transitiontn">Transition when Thumbnails comes up (default = fade optional show) Other effects are possible see documentation</label>
+
+			<label index="tx_TqSlideshow.containerWidth">Container width</label>
+			<label index="tx_TqSlideshow.containerHeight">Container height</label>
+
+	</languageKey>
+		<languageKey index="de" type="array">
+			<label index="tx_TqSlideshow.sheet_general">Allgemein</label>
+			<label index="tx_TqSlideshow.sheet_settings">Einstellungen</label>
+			<label index="tx_TqSlideshow.sheet_images">Bilder</label>
+			<label index="tx_TqSlideshow.sheet_thumbnails">Thumbnails</label>
+			<label index="tx_TqSlideshow.sheet_toolbar">Toolbar</label>
+			<label index="tx_TqSlideshow.sheet_buttons">Knöpfe</label>
+
+			<label index="tx_TqSlideshow.engine">Engine</label>
+			<label index="tx_TqSlideshow.mode">Reihenfolge der Bilder</label>
+			<label index="tx_TqSlideshow.mode.normal">Normal</label>
+			<label index="tx_TqSlideshow.mode.random">zufällig</label>
+
+			<label index="tx_TqSlideshow.titletext">Text</label>
+			<label index="tx_TqSlideshow.image">Bild</label>
+			<label index="tx_TqSlideshow.effect">Effekt</label>
+			<label index="tx_TqSlideshow.youtube-link">Url zum Youtube Video</label>
+			<label index="tx_TqSlideshow.link">Seiten Link</label>
+			<label index="tx_TqSlideshow.is_lightbox">In Lightbox öffnen</label>
+			<label index="tx_TqSlideshow.connect_lightbox">Connect in Lightbox</label>
+
+			<label index="tx_TqSlideshow.lightbox_width">Lightbox width</label>
+			<label index="tx_TqSlideshow.lightbox_height">Lightbox height</label>
+
+			<label index="tx_TqSlideshow.preview">Vorschau</label>
+			<label index="tx_TqSlideshow.description">Beschreibung</label>
+			<label index="tx_TqSlideshow.thumbnailWidth">Thumbnail Breite</label>
+			<label index="tx_TqSlideshow.thumbnailHeight">Thumbnail Höhe</label>
+
+			<label index="tx_TqSlideshow.keyEvents">Key events</label>
+
+
+			<label index="tx_TqSlideshow.showThumbnails">Thumbnails</label>
+			<label index="tx_TqSlideshow.showToolbar">Toolbar</label>
+
+			<label index="tx_TqSlideshow.showButtons">Knöpfe anzeigen</label>
+			<label index="tx_TqSlideshow.showDescription">Beschreibung anzeigen</label>
+			<label index="tx_TqSlideshow.templateFile">Vorlage</label>
+		</languageKey>
+	</data>
+</T3locallang>
