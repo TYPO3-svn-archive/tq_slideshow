@@ -51,7 +51,7 @@ class tx_tqslideshow_conf {
 	/**
 	 * Returns the extension variables defined in ext_conf_template.txt
 	 */
-	public static function getExtConf($name){
+	public static function getExtConf($name = null){
 
 		if(!empty($name)){
 			return unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tq_slideshow'][$name]);
@@ -65,8 +65,10 @@ class tx_tqslideshow_conf {
 	 * @param	string	$name	Config name
 	 * @return	string
 	 */
-	public static function getConf($name) {
-		return self::get('plugin.tx_tq_slideshow.'.$name);
+	public static function getConf($name = null) {
+		if( !empty( $name) ) {
+			return self::get('plugin.tx_tq_slideshow.'.$name);
+		}
 	}
 
 
@@ -86,9 +88,8 @@ class tx_tqslideshow_conf {
 
 	}
 
-	public function setSessionKey($array){
+	public function setSessionKey($array = array() ) {
 		global $TSFE;
-
 		$TSFE->fe_user->setKey('ses','tq_slideshow',$array);
 		$TSFE->storeSessionData();
 	}
@@ -133,7 +134,7 @@ class tx_tqslideshow_conf {
 	 * @param	string	$name	SetupTS Node
 	 * @return	array
 	 */
-	public static function getNode($name) {
+	public static function getNode( $name = null ) {
 		global $TSFE;
 
 		$ret = null;

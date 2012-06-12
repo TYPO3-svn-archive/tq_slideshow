@@ -229,20 +229,17 @@ $(document).ready(function() {
 
 		this.nextSlide = nextSlide = function () {
 			if(checkEventLock()) return;
-
 			// untested beta status
 			if(options.mode == 'random') {
 				var offset			= options.imageCount;
 				var tmpCurrentSlide	=  Math.floor(Math.random() * parseInt(offset));
-				// never use next == current
-				if(tmpCurrentSlide != currentSlide ) {
-					currentSlide	= tmpCurrentSlide;
-				}
+				thumbnailObj.gotoToolbar(tmpCurrentSlide+1);
+				cycleAbs( tmpCurrentSlide, 0, tmpCurrentSlide);
+			} else {
+				thumbnailObj.gotoNext();
+				cycle(currentSlide, 1);
 			}
 
-			thumbnailObj.gotoNext();
-
-			cycle(currentSlide, 1);
 			resetIntervall();
 		}
 
@@ -282,7 +279,7 @@ $(document).ready(function() {
 		}
 
 		function startIntervall(){
-		//	cl('start Intervall timer');
+//			cl('start Intervall timer');
 			if( options.changeTime > 0 ) {
 				if(timeoutStorage) {
 					try {
@@ -325,20 +322,6 @@ $(document).ready(function() {
 		var thumbnailObj	= $('#slideshow-thumbnail-list-wrapper-'+id).tqThumbnail(options,this);
 		return this;
 	}
-
-	$.fn.tqSlideshow.transitiontn = {
-		fade: function(element,mode) {
-			if (mode != 'show'){
-				element.fadeOut();
-			} else {
-				element.fadeIn();
-			}
-		},
-		show: function(element,mode) {
-			element.show();
-		}
-	};
-
 
 	$.fn.tqSlideshow.transitiontb = {
 		fade: function(element,mode) {

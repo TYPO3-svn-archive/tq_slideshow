@@ -350,8 +350,6 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 		$slideshowOptions['containerWidth']			= $containerWidth			? $containerWidth: $imageWidth;
 		$slideshowOptions['containerHeight']		= $containerHeight			? $containerHeight: $imageHeight;
 
-
-
 		$slideshowOptions['stdEffect']			= $this->_stdEffect;
 		$slideshowOptions['id']					= $this->_contentId;
 		$slideshowOptions['startItem']			= $this->_startItem;

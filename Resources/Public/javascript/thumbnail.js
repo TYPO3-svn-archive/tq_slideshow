@@ -15,6 +15,20 @@ $(document).ready(function() {
 		var tqSlideShow		= tqSlideshow;
 
 
+		function toggleTb(mode){
+
+			// define your own function for display the thumbnails
+			var init = $.fn.tqSlideshow.transitiontn[options.transitiontn];
+			if ($.isFunction(init)) {
+				init(tbList,mode);
+			} else {
+			//	console.log('transition effect for thumbnails is not defined use default fade');
+				var initDefault = $.fn.tqSlideshow.transitiontn['fade'];
+				initDefault(tbList,mode);
+			}
+		}
+
+
 		var gotoNext = this.gotoNext = function() {
 			goto(currentSlide +1);
 		}
@@ -25,7 +39,6 @@ $(document).ready(function() {
 
 
 		var gotoToolbar = this.gotoToolbar = function(value) {
-
 			goto(value+3);
 		}
 
@@ -42,13 +55,10 @@ $(document).ready(function() {
 			var jumpToTarget = -1;
 
 			if( currentSlide == -1 ) {
-				console.log("Init trigger");
-
 				// Init mode
 				numberToSlide	= slideItemCount-1;
 				targetSlide		= slideItemCount+1;
 			} else {
-				console.log("Custom trigger, move to slide "+number+" from "+currentSlide);
 
 				targetSlide	= number
 
@@ -71,20 +81,12 @@ $(document).ready(function() {
 				} else if( targetSlide > (slideItemCount) ) {
 					targetSlide = (targetSlide % slideItemCount);
 
-				//
-
 					if( targetSlide == 0 ) {
 						targetSlide = slideItemCount;
 					}
 				}
-
-			//	console.log(targetSlide);
-
-			//	console.log("Direction = "+direction);
-
 				if( targetSlide <= 2 ) {
 					//console.log("JUMP forward");
-				//	tbList.css('left',boxWidth*(currentSlide + slideItemCount)*-1);
 					targetSlide = slideItemCount + targetSlide;
 				}
 
@@ -93,11 +95,11 @@ $(document).ready(function() {
 
 			if( direction == 1 && numberToSlide > 0  ) {
 				var jumpTo = parseInt(currentSlide - slideItemCount)-2;
-				console.log("JUMP to "+jumpTo);
+//				console.log("JUMP to "+jumpTo);
 				tbList.css('left',boxWidth*(jumpTo)*-1);
 			} else if( direction == -1 && numberToSlide < 0 ) {
 				var jumpTo = parseInt(currentSlide + slideItemCount)-2;
-				console.log("JUMP to "+jumpTo);
+//				console.log("JUMP to "+jumpTo);
 				tbList.css('left',parseInt( boxWidth*(jumpTo)*-1 ) );
 			}
 
@@ -107,7 +109,7 @@ $(document).ready(function() {
 				left: posMove
 			});
 
-			console.log("trigger move to "+number+" from slide "+currentSlide+" to target slide " +targetSlide+" => go "+numberToSlide+" slides, direction "+direction);
+//			console.log("trigger move to "+number+" from slide "+currentSlide+" to target slide " +targetSlide+" => go "+numberToSlide+" slides, direction "+direction);
 			//console.log("pos move "+posMove);
 
 			currentSlide = targetSlide;
@@ -141,7 +143,6 @@ $(document).ready(function() {
 			'overflow': 'hidden'
 		});
 
-
 		$('li',tbList).each(function(i) {
 			var el	= $(this);
 			el.addClass('tqThumbnail');
@@ -152,10 +153,38 @@ $(document).ready(function() {
 				goto( i+1);
 			});
 		});
-		this.goto(1);
 
+		this.goto(1);
+		toggleTb('init');
+		target.mouseenter(function(){
+			toggleTb('show');
+		});
+		target.mouseleave(function(){
+			toggleTb('hide');
+		});
 		return this;
 	}
+
+	$.fn.tqSlideshow.transitiontn = {
+		fade: function(element,mode) {
+
+			switch(mode){
+				case 'init':
+					element.hide();
+					break;
+				case 'show':
+					element.fadeIn();
+					break;
+				case 'hide':
+					element.fadeOut();
+					break;
+
+			}
+		},
+		show: function(element,mode) {
+			element.show();
+		}
+	};
 
 
 });
