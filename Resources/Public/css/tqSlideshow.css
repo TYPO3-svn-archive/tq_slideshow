@@ -96,7 +96,7 @@
 }
 
 
-.slideshow .slideshow-preview-text {
+.slideshow-wrapper .slideshow-preview-text {
     background-color: #ccc;
     color: black;
     font: 10px/15px Arial,Helvetica,sans-serif;

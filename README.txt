@@ -44,7 +44,6 @@ Features:
 
 
 
-The TEQneers Slideshow (tq_slideshow) is a special for TYPO3 developed Image Slideshow.
 
 
 

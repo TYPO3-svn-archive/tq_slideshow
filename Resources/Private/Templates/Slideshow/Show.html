@@ -9,6 +9,18 @@ $('#slideshow-{contentId}').tqSlideshow( {slideshowOption});
 </script>
 
  <div id="slideshow-wrapper-{contentId}" class="slideshow-wrapper">
+
+
+	 <div id="slideshow-preview-wrapper-{contentId}" class="slideshow-preview-wrapper">
+		<f:for each="{imageList}" as="image" key="number">
+			<f:if condition="{image.preview}">
+				<span class="slideshow-preview-text preview-text-{number}">
+				<f:format.html>{image.preview}</f:format.html>
+				</span>
+			</f:if>
+		</f:for>
+	 </div>
+
 	<div id="slideshow-toolbar-wrapper-{contentId}" class="slideshow-toolbar-wrapper">
 		<ul id="toolbar-list-{contentId}" class="slideshow-toolbar"></ul>
 		<br class="styleClear"/>
@@ -29,11 +41,6 @@ $('#slideshow-{contentId}').tqSlideshow( {slideshowOption});
 			<f:for each="{imageList}" as="image" key="number">
 				<div class="imageContainer-{contentId}">
 					<f:format.html parseFuncTSPath="">{image.renderdLink}</f:format.html>
-					<f:if condition="{image.preview}">
-						<span class="slideshow-preview-text preview-text-{number}">
-						<f:format.html>{image.preview}</f:format.html>
-						</span>
-					</f:if>
 				</div>
 			</f:for>
 	</div>

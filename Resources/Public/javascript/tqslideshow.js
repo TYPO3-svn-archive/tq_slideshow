@@ -90,6 +90,7 @@ $(document).ready(function() {
 				autostop		: 1,
 				autostopCount	: 1,
 				sync			: 1,
+				fit				: 1,
 				startingSlide	: options.startItem,
 				before			: onBeforeCycle,
 				after			: onAfterCycle
@@ -97,11 +98,10 @@ $(document).ready(function() {
 		}
 
 		function onBeforeCycle(curr,next,opts) {
-			var previewTextContainer	= $('.preview-text-'+opts.currSlide,element);
-
+			var previewTextContainer	= $('.preview-text-'+opts.currSlide,wrapper);
 			var init = 	$.fn.tqSlideshow.transitiontb[options.transitiontb];
-
 			if ($.isFunction(init)) {
+
 				init(previewTextContainer,'before');
 			} else {
 				var initDefault = $.fn.tqSlideshow.transitiontb['show'];
@@ -111,7 +111,7 @@ $(document).ready(function() {
 
 
 		function onAfterCycle(curr,next,opts) {
-			var previewTextContainer	= $('.preview-text-'+opts.currSlide,element);
+			var previewTextContainer	= $('.preview-text-'+opts.currSlide,wrapper);
 			var init = 	$.fn.tqSlideshow.transitiontb[options.transitiontb];
 			if ($.isFunction(init)) {
 				init(previewTextContainer,'after');
