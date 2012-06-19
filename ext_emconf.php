@@ -11,8 +11,8 @@
 ########################################################################
 
 $EM_CONF[$_EXTKEY] = array(
-	'title' => 'TEQneers Imageslideshow Extension',
-	'description' => '',
+	'title' => 'TEQneers image slideshow',
+	'description' => 'Flexible jQuery slideshow for images and content elements - uses jQuery cycle',
 	'category' => 'TEQneers',
 	'author' => 'Nico Korthals',
 	'author_email' => 'nico@teqneers.de',
@@ -27,7 +27,7 @@ $EM_CONF[$_EXTKEY] = array(
 	'uploadfolder' => 0,
 	'createDirs' => '',
 	'modify_tables' => '',
-	'clearCacheOnLoad' => 0,
+	'clearCacheOnLoad' => 1,
 	'lockType' => '',
 	'version' => '0.9.2',
 	'constraints' => array(
@@ -39,6 +39,7 @@ $EM_CONF[$_EXTKEY] = array(
 		'conflicts' => array(
 		),
 		'suggests' => array(
+			't3jquery' => '',
 		),
 	),
 	'suggests' => array(
