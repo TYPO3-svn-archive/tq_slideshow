@@ -22,6 +22,17 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+
+// checks if t3jquery is loaded
+if (t3lib_extMgm::isLoaded('t3jquery')) {
+	require_once(t3lib_extMgm::extPath('t3jquery').'class.tx_t3jquery.php');
+	// if t3jquery is loaded and the custom Library had been created
+	if (T3JQUERY === true) {
+		tx_t3jquery::addJqJS();
+	}
+}
+
+
 class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
@@ -60,7 +71,6 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 */
 	protected $_startItem	= 0;
 
-
 	/**
 	 * The default change Time for the slideshow
 	 *
@@ -90,7 +100,6 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 * @var string
 	 */
 	protected $_mode	= 'normal';
-
 
 	/**
 	 * Specifies wether the carousel appears in horizontal or vertical orientation.
@@ -134,7 +143,6 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 */
 	protected $_thumbnailWidth		= false;
 
-
 	/**
 	 * Specifies the name of the $.fn.TqSlideshow.transitiontn[options.transitiontn] wich will called in javascript
 	 * for the thumbnail
@@ -149,7 +157,8 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 *
 	 * @return void
 	 */
-	protected function initializeAction() {}
+	protected function initializeAction() {
+	}
 
 	/**
 	 * List action for this historie
@@ -234,6 +243,8 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 		$engine			= $this->settings['engine'];
 		$jsFileList		= $pageTS['engines.'][$engine]['js.'];
 		$cssFileList	= $pageTS['engines.'][$engine]['css.'];
+
+
 
 		if( empty($TSFE->additionalHeaderData[$this->extensionName]) ) {
 			$TSFE->additionalHeaderData[$this->extensionName] = '';

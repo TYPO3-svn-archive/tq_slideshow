@@ -23,5 +23,4 @@ t3lib_extMgm::addPiFlexFormValue($pluginSignaturePi1, 'FILE:EXT:'.$_EXTKEY.'/Con
 $TBE_MODULES_EXT['xMOD_db_new_content_el']['addElClasses']['Tx_TqSlideshow_Utility_WizzardIcon'] = t3lib_extMgm::extPath($_EXTKEY). 'Configuration/Utility/WizzardIcon.php';
 
 
-
 ?>

@@ -37,11 +37,11 @@ class tx_tq_slideshow_javascript {
 
 		$TSFE->additionalHeaderData[$extName] .= '
 			<script type="text/javascript">
-				$(document).ready(function() {
-					jQuery(".tq-rzColobor-Content").colorbox({iframe:true, innerWidth:425, innerHeight:344});
-					jQuery(".tq-rzColobor-inline").colorbox({inline:true, innerWidth:425, innerHeight:344});
-
-
+				jQuery(document).ready(function($) {
+					if( $.fn.colorbox ) {
+						$(".tq-rzColobor-Content").colorbox({iframe:true, innerWidth:425, innerHeight:344});
+						$(".tq-rzColobor-inline").colorbox({inline:true, innerWidth:425, innerHeight:344});
+					}
 				});
 				var colorboxOnOpen = function(){};
 			</script>';

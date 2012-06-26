@@ -243,7 +243,8 @@ $(document).ready(function() {
 			resetIntervall();
 		}
 
-		function prevSlide(){
+		function prevSlide() {
+
 			if(checkEventLock()) return;
 
 			if( currentSlide == 1) {
@@ -308,16 +309,18 @@ $(document).ready(function() {
 
 		// set events
 		setEvent();
-		jQuery('.tq-rzColobor-Content'+id).colorbox({
-			onOpen: function(){
-				lightboxActive	= true;
-				stopIntervall();
-			},
-			onClosed: function(){
-				lightboxActive	= false;
-				startIntervall();
-			}
-		});
+		if( $.fn.colorbox ) {
+			jQuery('.tq-rzColobor-Content'+id).colorbox({
+				onOpen: function(){
+					lightboxActive	= true;
+					stopIntervall();
+				},
+				onClosed: function(){
+					lightboxActive	= false;
+					startIntervall();
+				}
+			});
+		}
 
 		var thumbnailObj	= $('#slideshow-thumbnail-list-wrapper-'+id).tqThumbnail(options,this);
 		return this;
