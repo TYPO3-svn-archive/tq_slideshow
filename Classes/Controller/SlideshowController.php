@@ -43,8 +43,7 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 *
 	 * @var string
 	 */
-	protected $_uploadFolder	= 'fileadmin/user_upload/';
-
+	protected $_uploadFolder	= 'fileadmin/user_upload/tq_slideshow/';
 
 	/**
 	 * stdEffect if no is defined
@@ -180,7 +179,6 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 		$extConfig				= tx_tqslideshow_conf::getExtConf();
 		$this->_lightBoxCls		= $extConfig['lightboxCls'];
 
-
 		$this->_setSource();
 		$this->_fetchImages();
 		$this->_dataProcessing();
@@ -215,7 +213,6 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 * Set Templates
 	 */
 	protected function _template(){
-
 		if(!empty($this->settings['templateFile'])){
 			$this->view->setTemplatePathAndFilename($this->settings['templateFile']);
 		}
@@ -224,8 +221,6 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 			$template = t3lib_extMgm::extPath('tq_slideshow') . 'Resources/Private/Templates/Slideshow/Empty-image.html';
 			$this->view->setTemplatePathAndFilename($template);
 		}
-
-
 	}
 
 	/**
@@ -244,10 +239,12 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 			$TSFE->additionalHeaderData[$this->extensionName] = '';
 		}
 
+		// include css files
 		foreach($cssFileList as $cssFile) {
 			$TSFE->additionalHeaderData[$this->extensionName] .= '<link rel="stylesheet" type="text/css" href="'.htmlspecialchars($cssFile).'">'."\n";
 		}
 
+		// include js files
 		foreach($jsFileList as $jsFile) {
 			$TSFE->additionalHeaderData[$this->extensionName] .= '<script type="text/javascript" src="'.htmlspecialchars($jsFile).'"></script>'."\n";
 		}
@@ -279,6 +276,11 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 
 	protected function _generateLinks($image,$cachedImage,$number){
 		global $TSFE;
+
+		$altTag			= $image['imageAltText'];
+		$cachedImg		= $image['cachedImage'];
+		$descriptionImg	= $image['description'];
+
 		$link	= null;
 		$number++;
 		// Call all lightbox hook
@@ -291,19 +293,21 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 			}
 		}
 
-		$link = $TSFE->cObj->typolink('<img class="slideshow-'.$this->_contentId.' slideshow-image" src="'.$image['cachedImage'].'">',$conf);
+		$link = $TSFE->cObj->typolink('
+			<img class="slideshow-'.$this->_contentId.' slideshow-image"
+				  src="'.$cachedImg.'"
+				  alt="'.$altTag.'">',
+			$conf
+		);
 
-
-
-		 if( $image['description'] ) {
+		if( $descriptionImg ) {
 			$link	= '<a class="tq-rzColobor-inline" href="#inline-'.$this->_contentId.'-number-'.$number.'">';
-			$link  .= '<img class="slideshow-'.$this->_contentId.' slideshow-image" src="'.$image['cachedImage'].'">';
+			$link  .= '<img class="slideshow-'.$this->_contentId.' slideshow-image" src="'.$cachedImg.'"alt="'.$altTag.'">';
 			$link  .= '</a>';
 		}
 
-
-		if($image['description'] && $image['is_lightbox'] ) {
-			$this->_content .= '<div id="inline-'.$this->_contentId.'-number-'.$number.'">'.$image['description'].'</div>';
+		if( $descriptionImg && $image['is_lightbox'] ) {
+			$this->_content .= '<div id="inline-'.$this->_contentId.'-number-'.$number.'">'.$descriptionImg.'</div>';
 		}
 
 		$this->view->assign('content',	$this->_content);
@@ -316,7 +320,7 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	/**
 	 * Collect the javascript options
 	 */
-	protected function _setSlideShowOptions(){
+	protected function _setSlideShowOptions() {
 		$changeTime			= $this->settings['changeTime'];
 		$imageWidth			= $this->settings['imageWidth'];
 		$imageHeight		= $this->settings['imageHeight'];
@@ -329,16 +333,13 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 		$transitiontn		= $this->settings['transitiontn'];
 		$carouselTb			= $this->settings['carousel'];
 		$mode				= $this->settings['mode'];
-
 		$thumbNailsToShow	= $this->settings['thumbnailToShow'];
 		$containerWidth		= $this->settings['containerWidth'];
 		$containerHeight	= $this->settings['containerHeight'];
 
-
 		$slideshowOptions	= array();
 
-		$slideshowOptions['changeTime']				= ($changeTime >= 500 )		? $changeTime : $this->_changeTime;
-
+		$slideshowOptions['changeTime']						= ($changeTime >= 500 )		? $changeTime : $this->_changeTime;
 		$slideshowOptions['showThumbnails']					= ($showThumbnails )		? $showThumbnails : $this->_showThumbnails;
 		$slideshowOptions['numberOfThumbnailsToDisplay']	= ($thumbNailsToShow )		? $thumbNailsToShow : false ;
 
@@ -359,10 +360,10 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 		$slideshowOptions['carousel']			= ($carouselTb ) ? $carouselTb : false;
 
 		$effectList	= array();
+
 		foreach( $this->_imageList as $image ) {
 			$effectList[]	= $image['effect'];
 		}
-
 		$slideshowOptions['effectList']	= $effectList;
 		$this->view->assign('slideshowOption',json_encode($slideshowOptions));
 	}
@@ -373,23 +374,21 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 */
 	protected function _dataProcessing() {
 
-		if(!empty($this->_imageList)) {
+		if(!empty( $this->_imageList ) ) {
 			$imageWidth			= $this->settings['imageWidth'];
 			$imageHeight		= $this->settings['imageHeight'];
 			$thumbnailWidth		= $this->settings['thumbnailWidth'];
 			$thumbnailHeight	= $this->settings['thumbnailHeight'];
 
-			if(empty($thumbnailWidth)){
+			if( empty( $thumbnailWidth ) ){
 				$thumbnailWidth= 150;
 			}
 
-			if(empty($thumbnailHeight)){
+			if( empty($thumbnailHeight ) ) {
 				$thumbnailHeight= 50;
 			}
 
-			foreach($this->_imageList as $key	=> &$image ) {
-
-
+			foreach( $this->_imageList as $key	=> &$image ) {
 				$thumbnail	= $image['image'];
 				if(!empty($image['thumbnail_alt'])){
 					$thumbnail	= $image['thumbnail_alt'];
