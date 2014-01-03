@@ -1,0 +1,9 @@
+
+<div class="video">
+	<f:if condition="{Image._isTypeYoutube}">
+		<f:render partial="MediaVideoYoutube" arguments="{Image: Image, ContentId: ContentId}" />
+	</f:if>
+	<f:if condition="{Image._isTypeLocal}">
+		<f:render partial="MediaVideoLocal" arguments="{Image: Image, ContentId: ContentId }" />
+	</f:if>
+</div>

@@ -1,0 +1,10 @@
+<div id="tq-tb-wrapper-{ContentId}" class="slideshow-thumbnail-list-wrapper jcarousel-skin-teqneers">
+	<ul id="slideshow-thumbnail-list-{ContentId}" class="slideshow-thumbnail-list">
+		<f:for each="{imageList}" as="image" key="number">
+			<li class="thumbnail-{contentId}">
+				<f:image src="{image.thumbnail}" alt="{image.title}" title="{image.title}" width="150" height="150"  />
+			</li>
+		</f:for>
+	</ul>
+	<br class="styleClear"/>
+</div>

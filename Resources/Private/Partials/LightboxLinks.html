@@ -1,0 +1,25 @@
+
+<f:if condition="{Image.link_type} == 1"> <!-- Page -->
+	<f:link.page pageUid="{Image.link}"  class="fancybox">
+		<f:image src="{Image.image.0.url}" alt="{Image.image.0.title}" title="{Image.image.0.title}"  height="407" />
+	</f:link.page>
+</f:if>
+<f:if condition="{Image.link_type} == 2"> <!-- Image -->
+	<a class="fancybox " href="{Image.image.0.url}">
+		<f:image src="{Image.image.0.url}" alt="{Image.image.0.title}" title="{Image.image.0.title}"  height="407" />
+	</a>
+
+</f:if>
+
+<f:if condition="{Image.link_type} == 3"> <!-- Video -->
+	<a class="fancybox iframe" href="{Image.link_video}">
+		<f:image src="{Image.image.0.url}" alt="{Image.image.0.title}" title="{Image.image.0.title}"  height="407" />
+	</a>
+</f:if>
+
+<f:if condition="{Image.link_type} == 4"> <!-- Description -->
+	<a class="fancybox inline"   href="#description-text-{Number}-{ContentId}">
+		<f:image src="{Image.image.0.url}" alt="{Image.image.0.title}" title="{Image.image.0.title}"  height="407" />
+	</a>
+</f:if>
+

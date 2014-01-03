@@ -1,0 +1,15 @@
+<f:if condition="{Image.link_type}">
+	<f:then>
+		<f:if condition="{Image.is_lightbox}">
+			<f:then>
+				<f:render partial="LightboxLinks" arguments="{Image: Image, ContentId: ContentId, Number: Number }" />
+			</f:then>
+			<f:else>
+				<f:render partial="Links" arguments="{Image: Image, ContentId: ContentId,Number: Number }" />
+			</f:else>
+		</f:if>
+	</f:then>
+	<f:else>
+		<f:image src="{Image.image.0.url}" alt="{Image.image.0.title}" title="{Image.image.0.title}"  height="407"  />
+	</f:else>
+</f:if>
