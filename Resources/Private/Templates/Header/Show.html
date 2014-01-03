@@ -1,0 +1,67 @@
+<script type="text/javascript">
+$(document).ready(function() {
+<f:format.html parseFuncTSPath="">
+$('#slideshow-{ContentId}').tqSlideshow( {slideshowOption});
+</f:format.html>
+});
+</script>
+
+
+ <div id="slideshow-wrapper-{ContentId}" class="slideshow-wrapper">
+
+	 <div id="slideshow-preview-wrapper-{ContentId}" class="slideshow-preview-wrapper">
+		<f:for each="{imageList}" as="image" key="number">
+			<f:if condition="{image.preview}">
+				<span class="slideshow-preview-text preview-text-{number}">
+				<f:format.raw>
+				<f:format.crop maxCharacters="200" append="&nbsp;[...]">{image.preview}</f:format.crop>
+				</f:format.raw>
+				</span>
+			</f:if>
+		</f:for>
+	 </div>
+
+	<div id="slideshow-toolbar-wrapper-{ContentId}" class="slideshow-toolbar-wrapper">
+		<ul id="toolbar-list-{ContentId}" class="slideshow-toolbar">
+			<li class="tq-auto-play">
+				<span class="slideshow-toolbar-list-element list-element-auto-play"></span>
+			</li>
+		</ul>
+		<br class="styleClear"/>
+	</div>
+
+
+	 <f:if condition="{Data.showPaging}">
+		 <f:render partial="Paging" arguments="{Image: image, imageList:imageList, ContentId: ContentId }" />
+	 </f:if>
+
+
+	 <div id="slideshow-{ContentId}" class="slideshow">
+		<f:for each="{imageList}" as="image" key="number">
+			<div class="mediaContainer imageContainer-{ContentId}">
+				<f:if condition="{0:image.media_type} == {0:'image'}">
+						<f:render partial="MediaImage" arguments="{Image: image, ContentId: ContentId, Number: number }" />
+				</f:if>
+				<f:if condition="{0:image.media_type} == {0:'video'}">
+					<f:render partial="MediaVideo" arguments="{Image: image, ContentId: ContentId, Number: number }" />
+				</f:if>
+			</div>
+		</f:for>
+	</div>
+
+	 <f:if condition="{Data.showThumbnails}">
+		 <f:render partial="Thumbnails" arguments="{Image: image, imageList:imageList, ContentId: ContentId }" />
+	 </f:if>
+ </div>
+<div style="display:none;">
+	<div id="slideshow-description-wrapper-{ContentId}" class="slideshow-description-wrapper">
+		<f:for each="{imageList}" as="image" key="number">
+			<f:if condition="{image.description}">
+			<span style="width:800px;" id="description-text-{number}-{ContentId}" class="slideshow-description-text">
+					<f:format.html>{image.description}</f:format.html>
+				</span>
+			</f:if>
+		</f:for>
+	</div>
+</div>
+
