@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<T3locallang>
+    <meta type="array">
+        <type>database</type>
+        <description>Language labels for database tables/fields belonging to extension 'pv_author'</description>
+    </meta>
+    <data type="array">
+
+
+        <languageKey index="default" type="array">
+
+            <!-- slideshow  -->
+
+            <label index="slideshow">TQSlideshow</label>
+            <label index="slideshow.title">Titel</label>
+
+
+            <label index="slideshow.starttime">Dauer von</label>
+            <label index="slideshow.endtime">Dauer bis</label>
+
+
+            <label index="slideshow.tab.general">General</label>
+            <label index="slideshow.tab.settings">Settings</label>
+            <label index="slideshow.tab.images">Images</label>
+            <label index="slideshow.tab.media">Media</label>
+            <label index="slideshow.tab.thumbnails">Thumbnails</label>
+            <label index="slideshow.tab.toolbar">Toolbar</label>
+            <label index="slideshow.tab.buttons">Buttons</label>
+
+            <label index="slideshow.media_type">Typ</label>
+
+            <label index="   slideshow.palette.type_local">Typ</label>
+
+            <label index="slideshow.video_type">Video-typ</label>
+            <label index="slideshow.video_type.youtube">YouTube</label>
+            <label index="slideshow.local">Dateien (Lokal)</label>
+
+            <label index="slideshow.video_type.youtube">YouTube</label>
+            <label index="slideshow.video_type.local">Dateien (Lokal)</label>
+            <label index="slideshow.media_video_youtube">YouTube Video URL</label>
+            <label index="slideshow.media_image_preview">Vorschaubild</label>
+            <label index="slideshow.media_video_flash">Flash (flv)</label>
+            <label index="slideshow.media_video_theora">OGG Theora (ogv)</label>
+            <label index="slideshow.media_video_h264">MPEG4 (h.264, mp4)</label>
+
+
+
+            <label index="slideshow.titletext">Text</label>
+            <label index="slideshow.image">Image</label>
+            <label index="slideshow.thumbnail_alt">Alternative thumbnail</label>
+
+            <label index="slideshow.changeTime">Autochange</label>
+
+            <label index="slideshow.videoWidth">Video width</label>
+            <label index="slideshow.videoHeight">Video height</label>
+
+            <label index="slideshow.effect_forward">Transition (forward)</label>
+            <label index="slideshow.effect_backward">Transition (backward)</label>
+
+            <label index="slideshow.link_type">Link type</label>
+
+            <label index="slideshow.link_page">Link to Page</label>
+            <label index="slideshow.link_image">Link to Image</label>
+            <label index="slideshow.link_youtube">Link to youtube-video</label>
+
+            <label index="slideshow.is_lightbox">Open Target in Lightbox</label>
+            <label index="slideshow.connect_lightbox">Connect in Lightbox</label>
+            <label index="slideshow.preview">Preview</label>
+            <label index="slideshow.description">Description</label>
+            <label index="slideshow.alttext">Image-Alt-Tag</label>
+
+            <label index="slideshow.numberOfThumbnailsToDisplay">Thumbnail numbers to show</label>
+
+            <label index="slideshow.carousel">Carousel for thumbnails</label>
+            <label index="slideshow.engine">Engine</label>
+
+            <label index="slideshow.pageSelector">Where to show</label>
+
+            <label index="slideshow.keyEvents">Key events</label>
+
+            <label index="slideshow.mode">Mode</label>
+            <label index="slideshow.mode.normal">Normal</label>
+            <label index="slideshow.mode.random">random</label>
+
+            <label index="slideshow.mode.manual">Manuel</label>
+            <label index="slideshow.mode.local">Local Directory</label>
+
+
+            <label index="slideshow.collection_id">Collection</label>
+            <label index="slideshow.mode.collection">Collection</label>
+
+
+
+            <label index="slideshow.lightbox_width">Lightbox width</label>
+            <label index="slideshow.lightbox_height">Lightbox height</label>
+
+            <label index="slideshow.showThumbnails">Show Thumbnails</label>
+            <label index="slideshow.showToolbar">Show Toolbar</label>
+
+            <label index="slideshow.showPaging">Paging</label>
+
+
+            <label index="slideshow.showButtons">Show Buttons</label>
+            <label index="slideshow.showDescription">Show Description</label>
+
+            <label index="slideshow.templateFile">Template</label>
+
+            <label index="slideshow.thumbnailDirectionHorizon">horizon</label>
+            <label index="slideshow.thumbnailDirectionVertical">vertical</label>
+
+            <label index="slideshow.transitiontn">Transition when Thumbnails comes up (default = fade optional show) Other effects are possible see documentation</label>
+
+            <label index="slideshow.containerWidth">Container width</label>
+            <label index="slideshow.containerHeight">Container height</label>
+
+            <label index="slideshow.collection.localDirectory">Local Directory</label>
+        </languageKey>
+        <languageKey index="de" type="array">
+            <label index="slideshow.tab.general">Allgemein</label>
+            <label index="slideshow.tab.settings">Einstellungen</label>
+            <label index="slideshow.tab.images">Bilder</label>
+            <label index="slideshow.tab.media">Medien</label>
+            <label index="slideshow.tab.thumbnails">Thumbnails</label>
+            <label index="slideshow.tab.toolbar">Toolbar</label>
+            <label index="slideshow.tab.buttons">Knöpfe</label>
+
+            <label index="slideshow.engine">Engine</label>
+            <label index="slideshow.mode">Reihenfolge der Bilder</label>
+            <label index="slideshow.mode.normal">Normal</label>
+            <label index="slideshow.mode.random">zufällig</label>
+
+            <label index="slideshow.titletext">Text</label>
+            <label index="slideshow.image">Bild</label>
+
+            <label index="slideshow.effect_forward">Effect (vorwärts)</label>
+            <label index="slideshow.effect_backward">Effect (rückwärts)</label>
+
+
+            <label index="slideshow.link_type">Link type</label>
+
+            <label index="slideshow.youtube-link">Url zum Youtube Video</label>
+            <label index="slideshow.link">Seiten Link</label>
+            <label index="slideshow.is_lightbox">In Lightbox öffnen</label>
+            <label index="slideshow.connect_lightbox">Connect in Lightbox</label>
+
+            <label index="slideshow.pageSelector">Wo soll sie angezeigt werden</label>
+
+            <label index="slideshow.lightbox_width">Lightbox width</label>
+            <label index="slideshow.lightbox_height">Lightbox height</label>
+
+            <label index="slideshow.preview">Vorschau</label>
+            <label index="slideshow.description">Beschreibung</label>
+            <label index="slideshow.thumbnailWidth">Thumbnail Breite</label>
+            <label index="slideshow.thumbnailHeight">Thumbnail Höhe</label>
+
+            <label index="slideshow.keyEvents">Key events</label>
+
+            <label index="slideshow.videoWidth">Video-Breite</label>
+            <label index="slideshow.videoHeight">Video-Breite</label>
+
+
+            <label index="slideshow.showThumbnails">Thumbnails</label>
+            <label index="slideshow.showToolbar">Toolbar</label>
+            <label index="slideshow.showPaging">Paging</label>
+
+
+            <label index="slideshow.showButtons">Knöpfe anzeigen</label>
+            <label index="slideshow.showDescription">Beschreibung anzeigen</label>
+            <label index="slideshow.templateFile">Vorlage</label>
+
+            <label index="slideshow.collection.localDirectory">Lokales Verzeichnis</label>
+
+        </languageKey>
+
+    </data>
+</T3locallang>
