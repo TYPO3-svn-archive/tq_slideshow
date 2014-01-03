@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2011 Markus Blaschke, TEQneers GmbH & Co. KG <info@teqneers.de>
+ *  (c) 2011 Nico Korthals, TEQneers GmbH & Co. KG <info@teqneers.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is

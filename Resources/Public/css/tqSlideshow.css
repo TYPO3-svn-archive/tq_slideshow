@@ -11,6 +11,7 @@
 	float:left;
 }
 
+
 .slideshow-wrapper .slideshow-image {
 	position: relative;
 }
@@ -22,26 +23,45 @@
 }
 
 .slideshow-thumbnail-list-wrapper {
-	left: 20%;
+	left: 50%;
     margin: auto;
     position: absolute;
     width: 516px;
-	z-index: 10;
-	bottom: 0px;
+	z-index: 999;
+	top: 10px;
 	height: 70px;
 }
 
 
+.slideshow-wrapper.content {
+    width: 640px;
+    height:407px;
+}
+
 .slideshow-wrapper {
 	position: relative;
 	width: 100%;
-	height: 408px;
-
+    height: 100%;
+    min-width: 400px;
+    min-height:200px;
+    overflow:hidden;
 }
 
 .slideshow-wrapper .slideshow {
 	width: 100%;
 	height: 100%;
+}
+
+
+.slideshow-wrapper .mediaContainer {
+    width: 100%;
+    height: 100%;
+}
+
+.slideshow-wrapper .slideshow img {
+    width: 100%;
+    display: block;
+    height: 100%;
 }
 
 .slideshow-controls .controller-wrapper {
@@ -99,7 +119,6 @@
 .slideshow-wrapper .slideshow-preview-text {
     background-color: #ccc;
     color: black;
-    font: 10px/15px Arial,Helvetica,sans-serif;
     opacity: 0.9;
     padding: 10px 13px;
     position: absolute;
@@ -107,13 +126,8 @@
 	right: 0px;
 	left: 0px;
 	display: block;
-	z-index: 5;
-	height: 140px;
-	border-radius: 0px 0px 10px 10px;
-	-moz-box-shadow: 0px 4px 10px #000;
-	-webkit-box-shadow: 0px 4px 10px #000;
-	box-shadow: 0px 4px 10px #000;
-
+	z-index: 20;
+	height: 30%;
 }
 
 
@@ -127,12 +141,12 @@ slideshow-preview-text.preview-text-1 {
 }
 
 
-ul.slideshow-thumbnail-list {
+div.slideshow-wrapper ul.slideshow-thumbnail-list {
 	left: 0px;
 	right: 100px;
-	height: 100%;
 	bottom: 0px ;
 	position: absolute;
+    margin-bottom: 0px;
 }
 
 ul.slideshow-thumbnail-list li {
@@ -143,7 +157,6 @@ ul.slideshow-thumbnail-list li {
 
 ul.slideshow-thumbnail-list li img {
 		opacity: 0.5;
-		border: 1px solid #f1f1f1;
 }
 
 ul.slideshow-thumbnail-list li img:hover {
@@ -158,7 +171,7 @@ ul.slideshow-thumbnail-list li.active img {
 
 div.slideshow-toolbar-wrapper {
 	position: absolute;
-	bottom: -20px;
+	bottom: 20px;
 	z-index: 100;
 	left: 40%;
 }
@@ -183,7 +196,6 @@ div.slideshow-toolbar-wrapper ul li.active span {
 div.slideshow-toolbar-wrapper ul li span {
     background: transparent;
     background-image: url(../Icons/ui-radio-button-uncheck.png);
-    border-radius: 15px 15px 15px 15px;
     display: block;
     float: left;
     height: 16px;
@@ -191,4 +203,9 @@ div.slideshow-toolbar-wrapper ul li span {
     text-indent: -9999px;
     width: 16px;
 	cursor: pointer;
+}
+
+
+div.slideshow-wrapper .jp-gui {
+    position: relative;
 }

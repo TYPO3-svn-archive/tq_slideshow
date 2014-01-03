@@ -30,6 +30,7 @@ class tx_tqslideshow_effectlist {
 		$extConf			= tx_tqslideshow_beconf::loadTS($params['row']['pid']);
 		$effectList			= $extConf['effectList.'];
 
+
 		foreach($effectList as $key => $value) {
 			$params['items'][] = array(0 => $value , 1 => $key);
 		}

@@ -13,6 +13,7 @@
 			<label index="tx_TqSlideshow.sheet_thumbnails">Thumbnails</label>
 			<label index="tx_TqSlideshow.sheet_toolbar">Toolbar</label>
 			<label index="tx_TqSlideshow.sheet_buttons">Buttons</label>
+            <label index="tx_TqSlideshow.sheet_template">Templates</label>
 
 			<label index="tx_TqSlideshow.titletext">Text</label>
 			<label index="tx_TqSlideshow.image">Image</label>
@@ -23,7 +24,9 @@
 			<label index="tx_TqSlideshow.imageWidth">Image width</label>
 			<label index="tx_TqSlideshow.imageHeight">Image height</label>
 
-			<label index="tx_TqSlideshow.effect">Transition</label>
+            <label index="tx_TqSlideshow.effect_forward">Transition (forward)</label>
+            <label index="tx_TqSlideshow.effect_backward">Transition (backward)</label>
+
 			<label index="tx_TqSlideshow.youtube-link">Link to youtube-video</label>
 			<label index="tx_TqSlideshow.link">Link to Page</label>
 			<label index="tx_TqSlideshow.is_lightbox">Open Target in Lightbox</label>
@@ -31,8 +34,6 @@
 			<label index="tx_TqSlideshow.preview">Preview</label>
 			<label index="tx_TqSlideshow.description">Description</label>
 			<label index="tx_TqSlideshow.alttext">Image-Alt-Tag</label>
-			<label index="tx_TqSlideshow.thumbnailWidth">Thumbnail width</label>
-			<label index="tx_TqSlideshow.thumbnailHeight">Thumbnail height</label>
 
 			<label index="tx_TqSlideshow.numberOfThumbnailsToDisplay">Thumbnail numbers to show</label>
 
@@ -51,6 +52,8 @@
 			<label index="tx_TqSlideshow.showThumbnails">Show Thumbnails</label>
 			<label index="tx_TqSlideshow.showToolbar">Show Toolbar</label>
 
+            <label index="tx_TqSlideshow.showPaging">Show Paging</label>
+
 			<label index="tx_TqSlideshow.showButtons">Show Buttons</label>
 			<label index="tx_TqSlideshow.showDescription">Show Description</label>
 
@@ -64,6 +67,12 @@
 			<label index="tx_TqSlideshow.containerWidth">Container width</label>
 			<label index="tx_TqSlideshow.containerHeight">Container height</label>
 
+
+            <label index="tx_TqSlideshow.partialRootPath">Path to template partials (FE)</label>
+            <label index="tx_TqSlideshow.layoutRootPath">Path to template layouts (FE)</label>
+            <label index="tx_TqSlideshow.templateRootPath">Path to template root (FE)</label>
+
+
 	</languageKey>
 		<languageKey index="de" type="array">
 			<label index="tx_TqSlideshow.sheet_general">Allgemein</label>
@@ -72,6 +81,7 @@
 			<label index="tx_TqSlideshow.sheet_thumbnails">Thumbnails</label>
 			<label index="tx_TqSlideshow.sheet_toolbar">Toolbar</label>
 			<label index="tx_TqSlideshow.sheet_buttons">Knöpfe</label>
+            <label index="tx_TqSlideshow.sheet_template">Templates</label>
 
 			<label index="tx_TqSlideshow.engine">Engine</label>
 			<label index="tx_TqSlideshow.mode">Reihenfolge der Bilder</label>
@@ -80,8 +90,11 @@
 
 			<label index="tx_TqSlideshow.titletext">Text</label>
 			<label index="tx_TqSlideshow.image">Bild</label>
-			<label index="tx_TqSlideshow.effect">Effekt</label>
-			<label index="tx_TqSlideshow.youtube-link">Url zum Youtube Video</label>
+
+            <label index="tx_TqSlideshow.effect_forward">Effekt (forwärts)</label>
+            <label index="tx_TqSlideshow.effect_backward">Effekt (rückwärts)</label>
+
+            <label index="tx_TqSlideshow.youtube-link">Url zum Youtube Video</label>
 			<label index="tx_TqSlideshow.link">Seiten Link</label>
 			<label index="tx_TqSlideshow.is_lightbox">In Lightbox öffnen</label>
 			<label index="tx_TqSlideshow.connect_lightbox">Connect in Lightbox</label>
@@ -99,8 +112,10 @@
 
 			<label index="tx_TqSlideshow.showThumbnails">Thumbnails</label>
 			<label index="tx_TqSlideshow.showToolbar">Toolbar</label>
+            <label index="tx_TqSlideshow.showPaging">Paging</label>
 
-			<label index="tx_TqSlideshow.showButtons">Knöpfe anzeigen</label>
+
+            <label index="tx_TqSlideshow.showButtons">Knöpfe anzeigen</label>
 			<label index="tx_TqSlideshow.showDescription">Beschreibung anzeigen</label>
 			<label index="tx_TqSlideshow.templateFile">Vorlage</label>
 		</languageKey>

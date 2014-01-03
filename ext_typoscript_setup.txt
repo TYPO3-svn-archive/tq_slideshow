@@ -1,6 +1,17 @@
-plugin.tx_TqSlideshow {
+plugin.tx_tqslideshow {
 
-	listViewPageId	= {$plugin.tx_tq_slideshow.ListViewPageId}
+	settings {
+		videoWidth					= {$plugin.tx_tqslideshow.settings.videoWidth}
+		videoHeight					= {$plugin.tx_tqslideshow.settings.videoHeight}
+		numberOfThumbnailsToDisplay	= {$plugin.tx_tqslideshow.settings.numberOfThumbnailsToDisplay}
+	}
+
+
+	view {
+		templateRootPath = {$plugin.tx_tqslideshow.view.templateRootPath}
+        partialRootPath = {$plugin.tx_tqslideshow.view.partialRootPath}
+        layoutRootPath = {$plugin.tx_tqslideshow.view.layoutRootPath}
+	}
 
 	image = IMG_RESOURCE
 	image {
@@ -11,60 +22,65 @@ plugin.tx_TqSlideshow {
 			height.field = height
 		}
 	}
+
+	engines {
+    	tqSlideshow {
+            name = tqSlideshow
+    		js {
+    			1	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/tqslideshow.js
+    			2	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/thumbnail.js
+    			3	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/jquery.cycle.all.js
+    			4   = typo3conf/ext/tq_slideshow/Resources/Public/javascript/jquery.jplayer.min.js
+    		#	5	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/jquery.bxSlider.js
+    			6	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/tqslideshow_addon.js
+    			7   = typo3conf/ext/tq_slideshow/Resources/Public/javascript/jquery.jplayer.inspector.js
+    		}
+    		css {
+    			1	= typo3conf/ext/tq_slideshow/Resources/Public/css/skin.css
+    			2	= typo3conf/ext/tq_slideshow/Resources/Public/css/tqSlideshow.css
+    			3	= typo3conf/ext/tq_slideshow/Resources/Public/css/jplayer/jplayer.slideshow.css
+    		}
+    	}
+   	}
+
+   	effectList {
+    	blindX		= blindX
+    	blindY		= blindY
+    	blindZ		= blindZ
+    	cover		= cover
+    	curtainX	= curtainX
+    	curtainY	= curtainY
+    	fade		= fade
+    	fadeZoom	= fadeZoom
+    	growX		= growX
+    	growY		= growY
+    	none		= none
+    	scrollUp	= scrollUp
+    	scrollDown  = scrollDown
+    	scrollLeft  = scrollLeft
+    	scrollRight = scrollRight
+    	scrollHorz = scrollHorz
+    	scrollVert = scrollVert
+    	shuffle		= shuffle
+    	slideX		= slideX
+    	slideY		= slideY
+    	toss		= toss
+    	turnUp		= turnUp
+    	turnDown	= turnDown
+    	turnLeft	= turnLeft
+    	turnRight	= turnRight
+    	uncover		= uncover
+    	wipe		= wipe
+    	zoom		= zoom
+    }
+
+   	effectListThumbnail {
+    	fade		= fade
+    	show		= show
+    	slideDown	= slideDown
+    }
+
 }
 
-plugin.tx_TqSlideshow.engines {
-	tqSlideshow {
-        name = tqSlideshow
-		js {
-			1	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/tqslideshow.js
-			2	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/thumbnail.js
-			3	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/jquery.cycle.all.js
-			4	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/jquery.bxSlider.js
-			5	= typo3conf/ext/tq_slideshow/Resources/Public/javascript/tqslideshow_addon.js
-		}
-		css {
-			1	= typo3conf/ext/tq_slideshow/Resources/Public/css/skin.css
-			2	= typo3conf/ext/tq_slideshow/Resources/Public/css/tqSlideshow.css
-
-		}
-	}
-}
 
 
-plugin.tx_TqSlideshow.effectListThumbnail {
-	fade		= fade
-	show		= show
-	slideDown	= slideDown
-}
-
-plugin.tx_TqSlideshow.effectList {
-	blindX		= blindX
-	blindY		= blindY
-	blindZ		= blindZ
-	cover		= cover
-	curtainX	= curtainX
-	curtainY	= curtainY
-	fade		= fade
-	fadeZoom	= fadeZoom
-	growX		= growX
-	growY		= growY
-	none		= none
-	scrollUp	= scrollUp
-	scrollDown  = scrollDown
-	scrollLeft  = scrollLeft
-	scrollRight = scrollRight
-	scrollHorz = scrollHorz
-	scrollVert = scrollVert
-	shuffle		= shuffle
-	slideX		= slideX
-	slideY		= slideY
-	toss		= toss
-	turnUp		= turnUp
-	turnDown	= turnDown
-	turnLeft	= turnLeft
-	turnRight	= turnRight
-	uncover		= uncover
-	wipe		= wipe
-	zoom		= zoom
-}

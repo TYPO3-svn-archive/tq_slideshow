@@ -2,7 +2,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2011 Markus Blaschke, TEQneers GmbH & Co. KG <info@teqneers.de>
+ *  (c) 2011 Nico Korthals, TEQneers GmbH & Co. KG <info@teqneers.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -34,7 +34,6 @@ class tx_tqslideshow_conf {
 
 	public static function rootPid() {
 		static $ret = null;
-
 		if( $ret === null ) {
 			global $TSFE;
 
@@ -57,7 +56,10 @@ class tx_tqslideshow_conf {
 			return unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tq_slideshow'][$name]);
 		}
 		return unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['tq_slideshow']);
-	}
+
+
+
+    }
 
 	/**
 	 * Get setup value
@@ -67,7 +69,7 @@ class tx_tqslideshow_conf {
 	 */
 	public static function getConf($name = null) {
 		if( !empty( $name) ) {
-			return self::get('plugin.tx_tq_slideshow.'.$name);
+			return self::get('plugin.tx_tqslideshow.'.$name);
 		}
 	}
 
@@ -80,17 +82,16 @@ class tx_tqslideshow_conf {
 	 */
 	public static function getSetupTs() {
 		global $TSFE;
-		// fetch pv_shop settings where the Warenkob is to find
-		$setup			= $TSFE->tmpl->setup;
-		$ret			= $setup['plugin.']['tx_TqSlideshow.'];
 
+		$setup			= $TSFE->tmpl->setup;
+		$ret			= $setup['plugin.']['tx_tqslideshow.'];
 		return $ret;
 
 	}
 
 	public function setSessionKey($array = array() ) {
 		global $TSFE;
-		$TSFE->fe_user->setKey('ses','tq_slideshow',$array);
+		$TSFE->fe_user->setKey('ses','tx_tqslideshow',$array);
 		$TSFE->storeSessionData();
 	}
 
@@ -103,7 +104,7 @@ class tx_tqslideshow_conf {
 	 */
 	public function getSessionKey(){
 		global $TSFE;
-		return 	$TSFE->fe_user->getKey('ses','tq_slideshow');
+		return 	$TSFE->fe_user->getKey('ses','tx_tqslideshow');
 	}
 
 	/**
@@ -116,7 +117,9 @@ class tx_tqslideshow_conf {
 		global $TSFE;
 
 		$ret	= null;
+
 		$setup	= $TSFE->tmpl->setup;
+
 		$parts	= explode('.',$name);
 		$token	= reset( array_splice($parts, count($parts)-1, 1) );
 
@@ -175,15 +178,14 @@ class tx_tqslideshow_conf {
 		$rootPid	= tx_tqslideshow_conf::rootPid();
 
 		if(!is_file($image)){
-			if($rootPid == 1){
-				$image	= 'fileadmin/templates/images/psychatrie/pv_empty_book.jpeg';
-			} else {
-				$image	= 'fileadmin/templates/images/balance/bc_empty_book.jpeg';
-			}
+            $extPath    = t3lib_extMgm::siteRelPath('tq_slideshow');
+            $image      = $extPath.'Resources/Public/images/dummy.jpg';
 		}
 
-		$confType	= $TSFE->tmpl->setup['plugin.']['tx_TqSlideshow.']['image'];
-		$conf		= $TSFE->tmpl->setup['plugin.']['tx_TqSlideshow.']['image.'];
+
+
+        $confType	= $TSFE->tmpl->setup['plugin.']['tx_tqslideshow.']['image'];
+		$conf		= $TSFE->tmpl->setup['plugin.']['tx_tqslideshow.']['image.'];
 
 
 		$cObj->data['image']	= $image;

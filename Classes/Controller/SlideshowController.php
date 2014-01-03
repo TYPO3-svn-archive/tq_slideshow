@@ -1,4 +1,18 @@
 <?php
+
+use TQ\TqSlideshow\Utility\DatabaseUtility;
+use TQ\TqSlideshow\Utility\Database\Slideshow;
+use TQ\TqSlideshow\Utility\Database\Media;
+use TQ\TqSlideshow\Utility\Database\Collection;
+use TQ\TqSlideshow\Service\FalService;
+
+use \TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use \TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+
+use \TYPO3\CMS\Core\Utility\GeneralUtility;
+
+
+
 /***************************************************************
 *  Copyright notice
 *
@@ -23,17 +37,7 @@
 ***************************************************************/
 
 
-// checks if t3jquery is loaded
-if (t3lib_extMgm::isLoaded('t3jquery')) {
-	require_once(t3lib_extMgm::extPath('t3jquery').'class.tx_t3jquery.php');
-	// if t3jquery is loaded and the custom Library had been created
-	if (T3JQUERY === true) {
-		tx_t3jquery::addJqJS();
-	}
-}
-
-
-class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Controller_ActionController {
+class Tx_TqSlideshow_Controller_SlideshowController extends ActionController {
 
 	/**
 	 * Id of the content element
@@ -41,6 +45,13 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 * @var	string
 	 */
 	protected $_contentId	= null;
+
+    /**
+     * Slideshow data
+     *
+     * @var array
+     */
+    protected $_data	= array();
 
 	/**
 	 * The Image set
@@ -63,7 +74,6 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 */
 	protected $_stdEffect	= array('fade');
 
-
 	/**
 	 * The index of the first image to show
 	 *
@@ -78,7 +88,6 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 */
 	protected $_changeTime	= 0;
 
-
 	/**
 	 * The default change Time for the slideshow
 	 *
@@ -92,7 +101,6 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 * @var integer
 	 */
 	protected $_height	= 200;
-
 
 	/**
 	 * The default mode  for the slideshow
@@ -109,7 +117,6 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 */
 	protected $_showToolbar	= false;
 
-
 	/**
 	 * Specifies wether the carousel appears in horizontal or vertical orientation.
 	 * Changes the carousel from a left/right style to a up/down style carousel.
@@ -118,8 +125,6 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 */
 	protected $_thumbnailDirection	= false;
 
-
-
 	/**
 	 * Specifies if thumbnails should be shown
 	 *
@@ -127,14 +132,12 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 */
 	protected $_showThumbnails		= false;
 
-
 	/**
 	 * Specifies the height of one thumbnail image
 	 *
 	 * @var boolean
 	 */
 	protected $_thumbnailHeight		= false;
-
 
 	/**
 	 * Specifies the width of one thumbnail image
@@ -151,21 +154,39 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	 */
 	protected $_transitiontn		= 'fade';
 
+    /**
+     * Initializes the controller before invoking an action method.
+     *
+     * @return void
+     */
+    protected function initializeAction() {
+        $extKey = \TYPO3\CMS\Core\Utility\GeneralUtility::camelCaseToLowerCaseUnderscored($this->extensionName);
+        $this->_getVars = GeneralUtility::_GET($extKey);
+    }
 
-	/**
-	 * Initializes the current action
-	 *
-	 * @return void
-	 */
-	protected function initializeAction() {
-	}
+    /**
+     * Initializes the view before invoking an action method.
+     *
+     * Override this method to solve assign variables common for all actions
+     * or prepare the view in another way before the action is called.
+     *
+     * @param \TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view The view to be initialized
+     * @return void
+     * @api
+     */
+    protected function initializeView(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface $view) {
+        ###############################
+        # TemplateVar: UID
+        ###############################
+        $cObj   = $this->configurationManager->getContentObject();
+        $uid    = $cObj->data['uid'];
+        $view->assign('UID', $uid);
+    }
 
 	/**
 	 * List action for this historie
-	 *
 	 */
 	public function listAction() {
-
 		$this->view->assign('imageList', array());
 	}
 
@@ -175,62 +196,30 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	public function showAction() {
 		global $TSFE;
 
-		$this->_cObjData		= $this->request->getContentObjectData();
+        $this->_cObjData  = $this->configurationManager->getContentObject();
 		// init and set slideshow id
-		if( !empty($this->_cObjData['uid']) ) {
+		if( !empty($this->_cObjData->data['uid']) ) {
 
-			$this->_contentId	 = 'c'.$this->_cObjData['uid'];
+			$this->_contentId	 = 'c'.$this->_cObjData->data['uid'];
 		} else {
 			// this is the page slideshow
 			$this->_contentId	 = 'p'.$TSFE->page['uid'];
 		}
 
-		$extConfig				= tx_tqslideshow_conf::getExtConf();
-		$this->_lightBoxCls		= $extConfig['lightboxCls'];
-
 		$this->_setSource();
-		$this->_fetchImages();
+        $this->_fetchData();
+
+		$this->_fetchMedia();
 		$this->_dataProcessing();
+
 		$this->_setSlideShowOptions();
 
-		$this->_template();
-
-		$this->view->assign('lightboxCls',		$this->_lightBoxCls);
-		$this->view->assign('contentId',		$this->_contentId);
-		$this->view->assign('imageList',		$this->_imageList);
-		$this->view->assign('slideShowData',	$slideShowData);
+        $this->view->assign('Data',		        $this->_data);
+		$this->view->assign('ContentId',		$this->_contentId);
+		$this->view->assign('imageList',		$this->_mediaList);
 	}
 
 
-	/**
-	 * Get extension configuration (by name)
-	 *
-	 * @param	string	$name			Configuration settings name
-	 * @param	mixed	$defaultValue	Default value (if configuration doesn't exists)
-	 * @return	mixed
-	 */
-	protected function getExtConf($name, $defaultValue = NULL) {
-		$ret = $defaultValue;
-
-		if(!empty($this->extConf[$name])) {
-			$ret = $this->extConf[$name];
-		}
-		return $ret;
-	}
-
-	/**
-	 * Set Templates
-	 */
-	protected function _template(){
-		if(!empty($this->settings['templateFile'])){
-			$this->view->setTemplatePathAndFilename($this->settings['templateFile']);
-		}
-
-		if(empty($this->_imageList)){
-			$template = t3lib_extMgm::extPath('tq_slideshow') . 'Resources/Private/Templates/Slideshow/Empty-image.html';
-			$this->view->setTemplatePathAndFilename($template);
-		}
-	}
 
 	/**
 	 * Set the required javascript files to the header
@@ -239,12 +228,19 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 	protected function _setSource(){
 		global $TSFE;
 
-		$pageTS			= tx_tqslideshow_conf::getSetupTs();
+        if(!empty($TSFE->additionalHeaderData[$this->extensionName])) {
+            return;
+        }
+
+        $pageTS			= tx_tqslideshow_conf::getSetupTs();
 		$engine			= $this->settings['engine'];
+
+        if(empty($engine)){
+            $engine = 'tqSlideshow.';
+        }
+
 		$jsFileList		= $pageTS['engines.'][$engine]['js.'];
 		$cssFileList	= $pageTS['engines.'][$engine]['css.'];
-
-
 
 		if( empty($TSFE->additionalHeaderData[$this->extensionName]) ) {
 			$TSFE->additionalHeaderData[$this->extensionName] = '';
@@ -259,159 +255,187 @@ class Tx_TqSlideshow_Controller_SlideshowController extends Tx_Extbase_MVC_Contr
 		foreach($jsFileList as $jsFile) {
 			$TSFE->additionalHeaderData[$this->extensionName] .= '<script type="text/javascript" src="'.htmlspecialchars($jsFile).'"></script>'."\n";
 		}
-
-		if (is_array ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tq_slideshow']['javascript'])) {
-			foreach  ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tq_slideshow']['javascript'] as $classRef) {
-				$hookObj= &t3lib_div::getUserObj($classRef);
-				if (method_exists($hookObj, 'javascript')) {
-					$hookObj->javascript($image,$conf,$this->extensionName,$js);
-				}
-			}
-		}
 	}
 
+    /**
+     * fetch the data
+     */
+    protected function _fetchData(){}
 
-	/**
-	 * get Images for Content element
-	 */
-	protected function _fetchImages() {
-
-		$imageList	= $this->settings['imageList'];
-		if(!empty($imageList)){
-			foreach($imageList as $image) {
-				$this->_imageList[]	= $image['row'];
-			}
-		}
-		return $this->_imageList;
-	}
-
-	protected function _generateLinks($image,$cachedImage,$number){
-		global $TSFE;
-
-		$altTag			= $image['imageAltText'];
-		$cachedImg		= $image['cachedImage'];
-		$descriptionImg	= $image['description'];
-
-		$link	= null;
-		$number++;
-		// Call all lightbox hook
-		if (is_array ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tq_slideshow']['lightboxLink'])) {
-			foreach  ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tq_slideshow']['lightboxLink'] as $classRef) {
-				$hookObj= &t3lib_div::getUserObj($classRef);
-				if (method_exists($hookObj, 'lightboxLink')) {
-					$hookObj->lightboxLink($image,$conf,$this->extensionName,$js,$this->_contentId,$number);
-				}
-			}
-		}
-
-		$link = $TSFE->cObj->typolink('
-			<img class="slideshow-'.$this->_contentId.' slideshow-image"
-				  src="'.$cachedImg.'"
-				  alt="'.$altTag.'">',
-			$conf
-		);
-
-		if( $descriptionImg ) {
-			$link	= '<a class="tq-rzColobor-inline" href="#inline-'.$this->_contentId.'-number-'.$number.'">';
-			$link  .= '<img class="slideshow-'.$this->_contentId.' slideshow-image" src="'.$cachedImg.'"alt="'.$altTag.'">';
-			$link  .= '</a>';
-		}
-
-		if( $descriptionImg && $image['is_lightbox'] ) {
-			$this->_content .= '<div id="inline-'.$this->_contentId.'-number-'.$number.'">'.$descriptionImg.'</div>';
-		}
-
-		$this->view->assign('content',	$this->_content);
-
-		return $link;
+    /**
+     * get Images for Content element
+     */
+    protected function _fetchMedia() {
+        $ret    = array();
 
 
-	}
+        if(!empty($this->_data)){
 
-	/**
-	 * Collect the javascript options
-	 */
-	protected function _setSlideShowOptions() {
-		$changeTime			= $this->settings['changeTime'];
-		$imageWidth			= $this->settings['imageWidth'];
-		$imageHeight		= $this->settings['imageHeight'];
-		$showToolbar		= $this->settings['showToolbar'];
-		$stdEffect			= $this->settings['effect'];
-		$showThumbnails		= $this->settings['showThumbnails'];
-		$thumbnailWidth		= $this->settings['thumbnailWidth'];
-		$thumbnailHeight	= $this->settings['thumbnailHeight'];
-		$thumbnailDirection	= $this->settings['thumbnailDirection'];
-		$transitiontn		= $this->settings['transitiontn'];
-		$carouselTb			= $this->settings['carousel'];
-		$mode				= $this->settings['mode'];
-		$thumbNailsToShow	= $this->settings['thumbnailToShow'];
-		$containerWidth		= $this->settings['containerWidth'];
-		$containerHeight	= $this->settings['containerHeight'];
+            switch($this->_data['media_mode']) {
+                case 1: // manual list
 
-		$slideshowOptions	= array();
+                    $params = array(
+                        'slideshow_id = '.$this->_data['uid'],
+                    );
+                    $this->_mediaList   = Media::getMediaList($params);
+                    break;
+                case 2: // Collection
+                    $collection = Collection::getCollection('uid = '.$this->_data['collection_id']);
 
-		$slideshowOptions['changeTime']						= ($changeTime >= 500 )		? $changeTime : $this->_changeTime;
-		$slideshowOptions['showThumbnails']					= ($showThumbnails )		? $showThumbnails : $this->_showThumbnails;
-		$slideshowOptions['numberOfThumbnailsToDisplay']	= ($thumbNailsToShow )		? $thumbNailsToShow : false ;
+                    if(!empty($collection) ) {
+                        $this->_mediaList    = Media::getMediaList('collection_id = '.$this->_data['collection_id']);
+                    }
+                    break;
+            }
+
+            foreach($this->_mediaList as &$data ) {
+                $uid    = $data['uid'];
+                switch( $data['media_type'] ) {
+                    case 1: // image
+                    case 'image':
+                        $data['media_type'] = 'image';
+                        $data['image']  = FalService::findByRelation('tx_tq_slideshow_media', 'image', $uid);
+                        break;
+                    case 2:
+                    case 'video';
+                        $data['media_type'] = 'video';
+                        $data['videoWidth'] = $this->settings['videoWidth'];
+                        $data['videoHeight'] = $this->settings['videoHeight'];
+
+                        switch($data['video_type']) {
+                            case 'youtube':
+                                // No files, only urls
+                                $data['_isTypeYoutube'] = 1;
+                                parse_str( parse_url($data['media_video_youtube'], PHP_URL_QUERY), $youtubeQueryData);
+                                if( !empty($youtubeQueryData['v']) ) {
+                                    $data['media_video_youtube_serial'] = $youtubeQueryData['v'];
+                                }
+
+                                $data['media_image_preview']    = FalService::findByRelation('tx_tq_slideshow_media', 'media_image_preview', $uid);
+                                break;
+                            case 'local':
+                                // Local storage
+
+                                $data['media_image_preview']    = FalService::findByRelation('tx_tq_slideshow_media', 'media_image_preview', $uid);
+
+                                $data['_isTypeLocal'] = 1;
+                                // Fetch file informations
+                                $data['media_video_flash']  = FalService::findByRelation('tx_tq_slideshow_media', 'media_video_flash', $uid);
+                                $data['media_video_theora'] = FalService::findByRelation('tx_tq_slideshow_media', 'media_video_theora', $uid);
+                                $data['media_video_h264']   = FalService::findByRelation('tx_tq_slideshow_media', 'media_video_h264', $uid);
+                                break;
+                        }
+                        $ret[]  = $data;
+                        break;
+                }
+            }
+            unset($data);
+        }
+
+        return $ret;
+    }
 
 
-		$slideshowOptions['showToolbar']			= ($showToolbar )			? $showToolbar : $this->_showToolbar;
-		$slideshowOptions['thumbnailDirection']		= ($thumbnailDirection )	? $thumbnailDirection : $this->_thumbnailDirection;
-		$slideshowOptions['transitiontn']			= ($transitiontn )			? $transitiontn : $this->_transitiontn;
-		$slideshowOptions['mode']					= ($mode )					? $mode : $this->_mode;
-		$slideshowOptions['containerWidth']			= $containerWidth			? $containerWidth: $imageWidth;
-		$slideshowOptions['containerHeight']		= $containerHeight			? $containerHeight: $imageHeight;
+    /**
+     * Collect the javascript options
+     */
+    protected function _setSlideShowOptions() {
+        $changeTime			= $this->_data['changeTime'];
+        $imageWidth			= $this->_data['imageWidth'];
+        $imageHeight		= $this->_data['imageHeight'];
+        $showToolbar		= $this->_data['showToolbar'];
+        $showThumbnails		= $this->_data['showThumbnails'];
 
-		$slideshowOptions['stdEffect']			= $this->_stdEffect;
-		$slideshowOptions['id']					= $this->_contentId;
-		$slideshowOptions['startItem']			= $this->_startItem;
+        $thumbnailDirection	= $this->_data['thumbnailDirection'];
+        $transitiontn		= $this->_data['transitiontn'];
 
-		$slideshowOptions['slideCount']			= count($this->_imageList);
-		$slideshowOptions['imageCount']			= count($this->_imageList);
-		$slideshowOptions['carousel']			= ($carouselTb ) ? $carouselTb : false;
+        $carouselTb			= $this->_data['carousel'];
+        $mode				= $this->_data['mode'];
+        $thumbNailsToShow	= $this->_data['thumbnailToShow'];
+        $containerWidth		= $this->_data['containerWidth'];
+        $containerHeight	= $this->_data['containerHeight'];
 
-		$effectList	= array();
+        $slideshowOptions	= array();
 
-		foreach( $this->_imageList as $image ) {
-			$effectList[]	= $image['effect'];
-		}
-		$slideshowOptions['effectList']	= $effectList;
-		$this->view->assign('slideshowOption',json_encode($slideshowOptions));
-	}
+        $slideshowOptions['changeTime']						= ($changeTime >= 500 )		? $changeTime : $this->_changeTime;
+        $slideshowOptions['showThumbnails']					= ($showThumbnails )		? $showThumbnails : $this->_showThumbnails;
+
+        $slideshowOptions['numberOfThumbnailsToDisplay']	= $this->settings['numberOfThumbnailsToDisplay'];
+
+        $slideshowOptions['showToolbar']			= ($showToolbar )			? $showToolbar : $this->_showToolbar;
+        $slideshowOptions['thumbnailDirection']		= ($thumbnailDirection )	? $thumbnailDirection : $this->_thumbnailDirection;
+        $slideshowOptions['transitiontn']			= ($transitiontn )			? $transitiontn : $this->_transitiontn;
+        $slideshowOptions['mode']					= ($mode )					? $mode : $this->_mode;
+        $slideshowOptions['containerWidth']			= $containerWidth			? $containerWidth: $imageWidth;
+        $slideshowOptions['containerHeight']		= $containerHeight			? $containerHeight: $imageHeight;
+
+        $slideshowOptions['stdEffect']			= $this->_stdEffect;
+        $slideshowOptions['id']					= $this->_contentId;
+        $slideshowOptions['startItem']			= $this->_startItem;
+
+        $slideshowOptions['slideCount']			= count($this->_mediaList);
+        $slideshowOptions['imageCount']			= count($this->_mediaList);
+        $slideshowOptions['carousel']			= ($carouselTb ) ? $carouselTb : false;
+
+        $effectList	= array();
+
+        foreach( $this->_mediaList as $image ) {
+            $effectList[]	= array(
+                $image['effect_forward'],
+                $image['effect_backward']
+            );
+        }
+
+        $slideshowOptions['effectList']	= $effectList;
+        $this->view->assign('slideshowOption',json_encode($slideshowOptions));
+    }
+
+    /**
+     * Set image Properties from PageSetup
+     */
+    protected function _dataProcessing() {
+        if(!empty( $this->_mediaList ) ) {
+
+            foreach( $this->_mediaList as $key	=> &$obj ) {
+                $thumbnail  = null;
 
 
-	/**
-	 * Set image Properties from PageSetup
-	 */
-	protected function _dataProcessing() {
+                if(empty($obj['media_type'])) {
+                    continue;
+                }
 
-		if(!empty( $this->_imageList ) ) {
-			$imageWidth			= $this->settings['imageWidth'];
-			$imageHeight		= $this->settings['imageHeight'];
-			$thumbnailWidth		= $this->settings['thumbnailWidth'];
-			$thumbnailHeight	= $this->settings['thumbnailHeight'];
+                switch( $obj['media_type'] ) {
+                    case 'image':
+                        $thumbnail	= $obj['image'][0]['url'];
+                        if(!empty($obj['thumbnail_alt'])){
+                            $thumbnail	= $obj['thumbnail_alt'];
+                        }
+                        $obj['thumbnail']	= tx_tqslideshow_conf::image($thumbnail);
 
-			if( empty( $thumbnailWidth ) ){
-				$thumbnailWidth= 150;
-			}
+                        break;
+                    case 'video':
+                        if(!empty($obj['media_image_preview'])){
+                            $thumbnail	        = $obj['media_image_preview'][0]['url'];
+                            $obj['thumbnail']	= tx_tqslideshow_conf::image($thumbnail);
+                        }
+                        break;
 
-			if( empty($thumbnailHeight ) ) {
-				$thumbnailHeight= 50;
-			}
+                    default:
+                        // do a hook fpr other elements
+                        if (is_array ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tq_slideshow']['mediatype'])) {
+                            foreach  ($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['tq_slideshow']['mediatype'] as $classRef) {
+                                $hookObj= &t3lib_div::getUserObj($classRef);
+                                if (method_exists($hookObj, 'mediatype')) {
+                                    $hookObj->mediatype($this->extensionName,$obj);
+                                }
+                            }
+                        }
+                        break;
 
-			foreach( $this->_imageList as $key	=> &$image ) {
-				$thumbnail	= $image['image'];
-				if(!empty($image['thumbnail_alt'])){
-					$thumbnail	= $image['thumbnail_alt'];
-				}
-				$image['cachedImage']			= tx_tqslideshow_conf::image($this->_uploadFolder.$image['image'],$imageWidth,$imageHeight);
-				$image['thumbnail']				= tx_tqslideshow_conf::image($this->_uploadFolder.$thumbnail,$thumbnailWidth,$thumbnailHeight);
-				$image['link']					= tx_tqslideshow_conf::isValidURL($image['link']);
-				$image['renderdLink']			= $this->_generateLinks($image,$image['cachedImage'],$key);
-			}
-		}
-	}
-
+                }
+            }
+        }
+    }
 }
 
 

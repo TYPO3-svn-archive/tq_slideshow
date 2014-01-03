@@ -1,2 +1,2 @@
-   # cat=Sitemap; type=string; label=lightbox class
-lightboxCls =
+# cat=Settings; type=string; label= PID to store slideshows
+storagePID =

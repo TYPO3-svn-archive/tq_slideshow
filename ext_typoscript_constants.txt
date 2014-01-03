@@ -1,3 +1,23 @@
-plugin.tx_tq_slideshow {
+plugin.tx_tqslideshow {
 
+
+	settings {
+		 # cat=plugin.tx_tqslideshow/video; type=int; label= Video width
+		videoWidth = 400
+
+		 # cat=plugin.tx_tqslideshow/video; type=int; label= Video height
+		videoHeight = 200
+
+		 # cat=plugin.tx_tqslideshow/video; type=int; label= Number of Thumbnails to show
+		numberOfThumbnailsToDisplay = 3
+	}
+
+	view {
+		 # cat=plugin.tx_tqslideshow/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:tq_slideshow/Resources/Private/Templates/
+		 # cat=plugin.tx_tqslideshow/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:tq_slideshow/Resources/Private/Partials/
+		 # cat=plugin.tx_tqslideshow/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:tq_slideshow/Resources/Private/Layouts/
+	}
 }

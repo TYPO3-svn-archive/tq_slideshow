@@ -3,7 +3,7 @@
 /***************************************************************
 *  Copyright notice
 *
-*  (c) 2011 Markus Blaschke, TEQneers GmbH & Co. KG <info@teqneers.de>
+*  (c) 2011 Nico Korthals, TEQneers GmbH & Co. KG <info@teqneers.de>
 *  All rights reserved
 *
 *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -34,9 +34,11 @@ class tx_tqslideshow_beconf {
 		$TSObj->init();
 		$TSObj->runThroughTemplates($rootLine);
 		$TSObj->generateConfig();
-		return $TSObj->setup['plugin.']['tx_TqSlideshow.'];
-
-
+		return $TSObj->setup['plugin.']['tx_tqslideshow.'];
 	}
+
+
+
+
 
 }

@@ -11,498 +11,130 @@
 		</TCEforms>
 		<type>array</type>
 		<el>
-			<settings.mode>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.mode</label>
-					<config>
-						<type>select</type>
-						<items type="array">
-							<numIndex index="0" type="array">
-								<numIndex index="0">LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.mode.normal</numIndex>
-								<numIndex index="1">normal</numIndex>
-							</numIndex>
-							<numIndex index="1" type="array">
-								<numIndex index="0">LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.mode.random</numIndex>
-								<numIndex index="1">random</numIndex>
-							</numIndex>
-						</items>
-						<size>1</size>
-						<minitems>1</minitems>
-						<maxitems>1</maxitems>
-					</config>
-				</TCEforms>
-			</settings.mode>
-			<settings.engine>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.engine</label>
-					<config>
-						<type>select</type>
-						<itemsProcFunc>tx_tqslideshow_effectlist->user_engine</itemsProcFunc>
-					</config>
-				</TCEforms>
-			</settings.engine>
+
+            <settings.slideshow_id>
+                <TCEforms>
+                    <label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_tca.xml:slideshow.collection_id</label>
+                    <config>
+                        <type>select</type>
+                        <itemsProcFunc>tx_tqslideshow_slideshowlist->user_collection</itemsProcFunc>
+                    </config>
+                </TCEforms>
+            </settings.slideshow_id>
+
+            <settings.videoWidth>
+                <TCEforms>
+                    <label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_tca.xml:slideshow.videoWidth</label>
+                    <config>
+                        <type>input</type>
+                        <size>5</size>
+                        <max>5</max>
+                        <eval>int</eval>
+                        <checkbox>0</checkbox>
+                        <default></default>
+                    </config>
+                </TCEforms>
+            </settings.videoWidth>
+
+            <settings.videoHeight>
+                <TCEforms>
+                    <label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_tca.xml:slideshow.videoHeight</label>
+                    <config>
+                        <type>input</type>
+                        <size>5</size>
+                        <max>5</max>
+                        <eval>int</eval>
+                        <checkbox>0</checkbox>
+                        <default></default>
+                    </config>
+                </TCEforms>
+            </settings.videoHeight>
 
 
-			<settings.changeTime>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.changeTime</label>
-					<config>
-						<type>input</type>
-						<size>4</size>
-						<max>4</max>
-						<eval>int</eval>
-						<checkbox>0</checkbox>
-						<default>0</default>
-					</config>
-				</TCEforms>
-			</settings.changeTime>
+            <settings.showToolbar>
+                <TCEforms>
+                    <label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_tca.xml:slideshow.showToolbar</label>
+                    <onChange>reload</onChange>
+                    <config>
+                        <type>check</type>
+                        <default>1</default>
+                    </config>
+                </TCEforms>
+            </settings.showToolbar>
 
-			<settings.imageWidth>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.imageWidth</label>
-					<config>
-						<type>input</type>
-						<size>5</size>
-						<max>5</max>
-						<eval>int</eval>
-						<checkbox>0</checkbox>
-						<default></default>
-					</config>
-				</TCEforms>
-			</settings.imageWidth>
+            <settings.showThumbnails>
+                <TCEforms>
+                    <label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.showThumbnails</label>
+                    <onChange>reload</onChange>
+                    <config>
+                        <type>check</type>
+                        <default>1</default>
+                    </config>
+                </TCEforms>
+            </settings.showThumbnails>
 
-			<settings.imageHeight>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.imageHeight</label>
-					<config>
-						<type>input</type>
-						<size>5</size>
-						<max>5</max>
-						<eval>int</eval>
-						<checkbox>0</checkbox>
-						<default></default>
-					</config>
-				</TCEforms>
-			</settings.imageHeight>
+            <settings.showPaging>
+                <TCEforms>
+                    <label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_tca.xml:slideshow.showPaging</label>
+                    <onChange>reload</onChange>
+                    <config>
+                        <type>check</type>
+                        <default>1</default>
+                    </config>
+                </TCEforms>
+            </settings.showPaging>
 			</el>
 		</ROOT>
 	</tqSlideshow_main>
 
+    <tqSlideshow_template>
+        <ROOT>
+            <TCEforms>
+                <sheetTitle>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.sheet_template</sheetTitle>
+            </TCEforms>
+            <type>array</type>
+            <el>
+                <view.templateRootPath>
+                    <TCEforms>
+                        <label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.templateRootPath</label>
+                        <config>
+                            <type>input</type>
+                            <size>30</size>
+                            <max>30</max>
+                            <eval>trim</eval>
+                        </config>
+                    </TCEforms>
+                </view.templateRootPath>
 
-	<tqSlideshow_images>
-	<ROOT>
-		<TCEforms>
-			<sheetTitle>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.sheet_images</sheetTitle>
-		</TCEforms>
-		<type>array</type>
-		<el>
-			<settings.imageList>
-				<section>1</section>
-				<type>array</type>
-				<el>
-					<row>
-						<type>array</type>
-						<el>
-							<image>
-								<TCEforms>
-									<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.image</label>
-									<config>
-										<type>group</type>
-										<internal_type>file</internal_type>
-										<allowed>gif,png,jpg,jpeg</allowed>
-										<show_thumbs>1</show_thumbs>
-										<size>1</size>
-										<minitems>0</minitems>
-										<maxitems>1</maxitems>
-										<uploadfolder>fileadmin/user_upload/</uploadfolder>
-									</config>
-								</TCEforms>
-							</image>
+                <view.partialRootPath>
+                    <TCEforms>
+                        <label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.partialRootPath</label>
+                        <config>
+                            <type>input</type>
+                            <size>30</size>
+                            <max>30</max>
+                            <eval>trim</eval>
+                        </config>
+                    </TCEforms>
+                </view.partialRootPath>
 
-							<thumbnail_alt>
-								<TCEforms>
-									<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.thumbnail_alt</label>
-									<config>
-										<type>group</type>
-										<internal_type>file</internal_type>
-										<allowed>gif,png,jpg,jpeg</allowed>
-										<show_thumbs>1</show_thumbs>
-										<size>1</size>
-										<minitems>0</minitems>
-										<maxitems>1</maxitems>
-										<uploadfolder>fileadmin/user_upload/</uploadfolder>
-									</config>
-								</TCEforms>
-							</thumbnail_alt>
-
-
-							<title>
-								<TCEforms>
-									<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.titletext</label>
-									<config>
-										<type>input</type>
-										<size>30</size>
-										<eval>required</eval>
-									</config>
-								</TCEforms>
-							</title>
-							<imageAltText>
-								<TCEforms>
-									<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.alttext</label>
-									<config>
-										<type>input</type>
-										<size>30</size>
-									</config>
-								</TCEforms>
-							</imageAltText>
-							<preview>
-								<TCEforms>
-									<exclude>1</exclude>
-										<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.preview</label>
-									<config>
-										<type>text</type>
-										<cols>30</cols>
-										<rows>5</rows>
-										<eval>required</eval>
-									</config>
-									<defaultExtras>richtext[*]:rte_transform[flag=rte_enabled|mode=ts_css]</defaultExtras>
-								</TCEforms>
-							</preview>
-							<description>
-								<TCEforms>
-									<exclude>1</exclude>
-										<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.description</label>
-									<config>
-										<type>text</type>
-										<cols>30</cols>
-										<rows>5</rows>
-										<eval>required</eval>
-									</config>
-									<defaultExtras>richtext[*]:rte_transform[flag=rte_enabled|mode=ts_css]</defaultExtras>
-								</TCEforms>
-							</description>
-							<effect>
-								<TCEforms>
-									<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.effect</label>
-									<config>
-										<type>select</type>
-										<itemsProcFunc>tx_tqslideshow_effectlist->user_effect</itemsProcFunc>
-									</config>
-								</TCEforms>
-							</effect>
-
-							<link.url>
-								<TCEforms>
-									<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.link</label>
-									<config type="array">
-											<type>input</type>
-											<size>30</size>
-											<max>256</max>
-											<checkbox></checkbox>
-											<eval>trim</eval>
-											<wizards type="array">
-												<_PADDING type="integer">2</_PADDING>
-												<link type="array">
-													<type>popup</type>
-													<title>Link</title>
-													<icon>link_popup.gif</icon>
-													<script>browse_links.php?mode=wizard</script>
-													<JSopenParams>height=300,width=500,status=0,menubar=0,scrollbars=1</JSopenParams>
-												</link>
-											</wizards>
-										</config>
-								</TCEforms>
-							</link.url>
+                <view.layoutRootPath>
+                    <TCEforms>
+                        <label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.layoutRootPath</label>
+                        <config>
+                            <type>input</type>
+                            <size>30</size>
+                            <max>30</max>
+                            <eval>trim</eval>
+                        </config>
+                    </TCEforms>
+                </view.layoutRootPath>
+            </el>
+        </ROOT>
+    </tqSlideshow_template>
 
 
-							<is_lightbox>
-								<TCEforms>
-									<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.is_lightbox</label>
-									<onChange>reload</onChange>
-									<config>
-									<type>check</type>
-									</config>
-								</TCEforms>
-							</is_lightbox>
 
-
-							<lightbox_width>
-								<TCEforms>
-									<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.lightbox_width</label>
-									<displayCond>FIELD:settings.is_lightbox:IN:1,</displayCond>
-									<config>
-										<type>input</type>
-										<size>30</size>
-										<eval>required,int</eval>
-									</config>
-								</TCEforms>
-							</lightbox_width>
-
-							<lightbox_height>
-								<TCEforms>
-									<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.lightbox_height</label>
-									<config>
-										<type>input</type>
-										<size>30</size>
-										<eval>required,int</eval>
-									</config>
-								</TCEforms>
-							</lightbox_height>
-
-
-							<connect_lightbox>
-								<TCEforms>
-									<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.connect_lightbox</label>
-									<displayCond>FIELD:settings.is_lightbox:IN:1,</displayCond>
-									<config>
-									<type>check</type>
-									</config>
-								</TCEforms>
-							</connect_lightbox>
-
-
-						</el>
-					</row>
-				</el>
-			</settings.imageList>
-		</el>
-	</ROOT>
-	</tqSlideshow_images>
-
-
-	<tqSlideshow_thumbnails>
-	<ROOT>
-		<TCEforms>
-			<sheetTitle>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.sheet_thumbnails</sheetTitle>
-		</TCEforms>
-		<type>array</type>
-		<el>
-		<settings.showThumbnails>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.showThumbnails</label>
-					<onChange>reload</onChange>
-					<config>
-						<type>check</type>
-						<default>1</default>
-					</config>
-				</TCEforms>
-			</settings.showThumbnails>
-
-			<settings.thumbnailWidth>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.thumbnailWidth</label>
-					<displayCond>FIELD:settings.showThumbnails:IN:1,</displayCond>
-					<config>
-						<type>input</type>
-						<size>5</size>
-						<max>5</max>
-						<eval>int</eval>
-						<checkbox>0</checkbox>
-						<default></default>
-					</config>
-				</TCEforms>
-			</settings.thumbnailWidth>
-
-			<settings.thumbnailHeight>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.thumbnailHeight</label>
-					<displayCond>FIELD:settings.showThumbnails:IN:1,</displayCond>
-					<config>
-						<type>input</type>
-						<size>5</size>
-						<max>5</max>
-						<eval>int</eval>
-						<checkbox>0</checkbox>
-						<default></default>
-					</config>
-				</TCEforms>
-			</settings.thumbnailHeight>
-
-			<settings.thumbnailToShow>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.numberOfThumbnailsToDisplay</label>
-					<displayCond>FIELD:settings.showThumbnails:IN:1,</displayCond>
-					<config>
-						<type>input</type>
-						<size>5</size>
-						<max>5</max>
-						<eval>tx_tqslideshow_uneven,int,required</eval>
-						<checkbox>0</checkbox>
-						<default></default>
-					</config>
-				</TCEforms>
-			</settings.thumbnailToShow>
-
-
-			<settings.thumbnailDirection>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.thumbnailDirection</label>
-					<displayCond>FIELD:settings.showThumbnails:IN:1,</displayCond>
-					<config>
-						<type>select</type>
-						<items type="array">
-							<numIndex index="0" type="array">
-								<numIndex index="0">LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.thumbnailDirectionVertical</numIndex>
-								<numIndex index="1">false</numIndex>
-							</numIndex>
-							<numIndex index="1" type="array">
-								<numIndex index="0">LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.thumbnailDirectionHorizon</numIndex>
-								<numIndex index="1">true</numIndex>
-							</numIndex>
-						</items>
-						<size>1</size>
-						<minitems>1</minitems>
-						<maxitems>1</maxitems>
-					</config>
-				</TCEforms>
-			</settings.thumbnailDirection>
-
-			<settings.carousel>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.carousel</label>
-					<displayCond>FIELD:settings.showThumbnails:IN:1,</displayCond>
-					<config>
-						<type>check</type>
-						<default>1</default>
-					</config>
-				</TCEforms>
-			</settings.carousel>
-
-
-			<settings.transitiontn>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.transitiontn</label>
-					<displayCond>FIELD:settings.showThumbnails:IN:1,</displayCond>
-
-					<config>
-						<type>select</type>
-						<itemsProcFunc>tx_tqslideshow_effectlist->thumbnail_effect</itemsProcFunc>
-					</config>
-				</TCEforms>
-			</settings.transitiontn>
-		</el>
-	</ROOT>
-	</tqSlideshow_thumbnails>
-
-	<tqSlideshow_toolbar>
-	<ROOT>
-		<TCEforms>
-			<sheetTitle>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.sheet_toolbar</sheetTitle>
-		</TCEforms>
-		<type>array</type>
-		<el>
-			<settings.showToolbar>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.showToolbar</label>
-					<config>
-						<type>check</type>
-						<default>1</default>
-					</config>
-				</TCEforms>
-			</settings.showToolbar>
-		</el>
-	</ROOT>
-	</tqSlideshow_toolbar>
-
-<!--
-	<tqSlideshow_button>
-	<ROOT>
-		<TCEforms>
-			<sheetTitle>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.sheet_buttons</sheetTitle>
-		</TCEforms>
-		<type>array</type>
-		<el>
-			<settings.showButtons>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.showButtons</label>
-					<config>
-						<type>check</type>
-						<default>1</default>
-					</config>
-				</TCEforms>
-			</settings.showButtons>
-		</el>
-	</ROOT>
-	</tqSlideshow_button>
-
--->
-
-
-	<tqSlideshow_settings>
-	<ROOT>
-		<TCEforms>
-			<sheetTitle>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.sheet_settings</sheetTitle>
-		</TCEforms>
-		<type>array</type>
-		<el>
-			<settings.templateFile>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.templateFile</label>
-					<config>
-						<type>group</type>
-						<internal_type>file_reference</internal_type>
-						<uploadfolder>uploads/tx_tqkueffnerproduct2</uploadfolder>
-						<allowed>html,htm,tmpl</allowed>
-						<max_size>1000</max_size>
-						<size>1</size>
-						<maxitems>1</maxitems>
-						<minitems>0</minitems>
-					</config>
-				</TCEforms>
-			</settings.templateFile>
-
-			<settings.containerWidth>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.containerWidth</label>
-					<config>
-						<type>input</type>
-						<size>5</size>
-						<max>5</max>
-						<eval>trim</eval>
-						<checkbox>0</checkbox>
-						<default></default>
-					</config>
-				</TCEforms>
-			</settings.containerWidth>
-
-			<settings.containerHeight>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.containerHeight</label>
-					<config>
-						<type>input</type>
-						<size>5</size>
-						<max>5</max>
-						<eval>trim</eval>
-						<checkbox>0</checkbox>
-						<default></default>
-					</config>
-				</TCEforms>
-			</settings.containerHeight>
-
-			<settings.keyEvents>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.keyEvents</label>
-					<config>
-						<type>check</type>
-						<default>1</default>
-					</config>
-				</TCEforms>
-			</settings.keyEvents>
-	<!--
-			<settings.showDescription>
-				<TCEforms>
-					<label>LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_db.xml:tx_TqSlideshow.showDescription</label>
-					<config>
-						<type>check</type>
-						<default>1</default>
-					</config>
-				</TCEforms>
-			</settings.showDescription>
-
-	-->
-		</el>
-	</ROOT>
-	</tqSlideshow_settings>
 
 </sheets>
 </T3DataStructure>

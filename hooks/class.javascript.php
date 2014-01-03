@@ -34,22 +34,6 @@ class tx_tq_slideshow_javascript {
 	 */
 	public function javascript(&$image,&$conf,$extName){
 		global $TSFE;
-
-		$TSFE->additionalHeaderData[$extName] .= '
-			<script type="text/javascript">
-				jQuery(document).ready(function($) {
-					if( $.fn.colorbox ) {
-						$(".tq-rzColobor-Content").colorbox({iframe:true, innerWidth:425, innerHeight:344});
-						$(".tq-rzColobor-inline").colorbox({inline:true, innerWidth:425, innerHeight:344});
-					}
-				});
-				var colorboxOnOpen = function(){};
-			</script>';
-
-
-
-
-
 	}
 }
 
