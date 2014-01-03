@@ -8,21 +8,15 @@
         <languageKey index="default" type="array">
             <label index="tx_TqSlideshow.title">TQSlideshow</label>
             <label index="tx_TqSlideshow.description">Displays a Slideshow on a page</label>
-            <label index="title.module.slideshow">TEQneers Slideshow Verwaltung</label>
+            <label index="title.module.slideshow">TEQneers Slideshow administration</label>
 
             <label index="label.pager.position">Seite %s von %s</label>
             <label index="label.pager.result">Zeige {0} Einträge - {1} bis {2}</label>
-            <label index="label.pager.empty">Es sind keine Einträge vorhanden</label>
+            <label index="label.pager.empty">Not slideshows available</label>
 
-            <label index="field.criteria.fulltext">Schnellsuche</label>
-            <label index="label.search.fulltext">Suchen...</label>
-            <label index="label.empty.fulltext">Suchen...</label>
-
-            <label index="label.empty.criteriaEndtime">Endzeitpunkt</label>
-            <label index="label.search.criteriaEndtime">Endzeitpunkt</label>
-            <label index="label.search.category">Rubrik</label>
-            <label index="label.search.type">Typ</label>
-            <label index="label.search.status">Status</label>
+            <label index="field.criteria.fulltext">quick search</label>
+            <label index="label.search.fulltext">search...</label>
+            <label index="label.empty.fulltext">search...</label>
 
             <label index="db.uid">ID</label>
             <label index="db.title">Titel</label>
@@ -37,35 +31,21 @@
             <label index="status.locked">gesperrt</label>
             <label index="status.active">aktiv</label>
 
-            <label index="hint.create">Eintrag anlegen</label>
-            <label index="hint.show">Eintrag anzeigen</label>
-            <label index="hint.search">Suchen</label>
-            <label index="hint.edit">Eintrag bearbeiten</label>
-            <label index="hint.delete">Eintrag löschen</label>
-            <label index="hint.hide">Eintrag verstecken</label>
-            <label index="hint.unhide">Eintrag sichtbar machen</label>
-            <label index="hint.lock">Eintrag sperren</label>
-            <label index="hint.unlock">Eintrag entsperren</label>
+            <label index="hint.search">search</label>
+            <label index="hint.edit">edit slideshow</label>
+            <label index="hint.delete">delete slideshow</label>
+            <label index="hint.hide">hide slideshow</label>
+            <label index="hint.unhide">visible</label>
 
-            <label index="button.search">Suchen</label>
-            <label index="button.create">Neuer Eintrag</label>
-            <label index="button.settings">Einstellungen</label>
+            <label index="button.search">search</label>
+            <label index="button.create">New slideshow</label>
+            <label index="button.settings">Settings</label>
 
 
-            <label index="message.confirm.lock.title">Eintrag sperren?</label>
-            <label index="message.confirm.lock.body">Möchten Sie den Eintrag "{0}" wirklich sperren?</label>
-            <label index="message.confirm.lock.button.yes">Sperren</label>
-            <label index="message.confirm.lock.button.cancel">Abbrechen</label>
-
-            <label index="message.confirm.unlock.title">Sperrung aufheben?</label>
-            <label index="message.confirm.unlock.body">Möchten Sie die Sperrung des Eintrags "{0}" wirklich aufheben?</label>
-            <label index="message.confirm.unlock.button.yes">Aufheben</label>
-            <label index="message.confirm.unlock.button.cancel">Abbrechen</label>
-
-            <label index="message.confirm.delete.title">Eintrag löschen?</label>
-            <label index="message.confirm.delete.body">Möchten Sie den Eintrag "{0}" wirklich löschen?</label>
-            <label index="message.confirm.delete.button.yes">Löschen</label>
-            <label index="message.confirm.delete.button.cancel">Abbrechen</label>
+            <label index="message.confirm.delete.title">delete slideshow?</label>
+            <label index="message.confirm.delete.body">Are you sure?</label>
+            <label index="message.confirm.delete.button.yes">delete</label>
+            <label index="message.confirm.delete.button.cancel">cancel</label>
         </languageKey>
 
 
@@ -117,18 +97,8 @@
             <label index="button.settings">Einstellungen</label>
 
 
-            <label index="message.confirm.lock.title">Eintrag sperren?</label>
-            <label index="message.confirm.lock.body">Möchten Sie den Eintrag "{0}" wirklich sperren?</label>
-            <label index="message.confirm.lock.button.yes">Sperren</label>
-            <label index="message.confirm.lock.button.cancel">Abbrechen</label>
-
-            <label index="message.confirm.unlock.title">Sperrung aufheben?</label>
-            <label index="message.confirm.unlock.body">Möchten Sie die Sperrung des Eintrags "{0}" wirklich aufheben?</label>
-            <label index="message.confirm.unlock.button.yes">Aufheben</label>
-            <label index="message.confirm.unlock.button.cancel">Abbrechen</label>
-
             <label index="message.confirm.delete.title">Eintrag löschen?</label>
-            <label index="message.confirm.delete.body">Möchten Sie den Eintrag "{0}" wirklich löschen?</label>
+            <label index="message.confirm.delete.body">Sind Sie sich sicher?</label>
             <label index="message.confirm.delete.button.yes">Löschen</label>
             <label index="message.confirm.delete.button.cancel">Abbrechen</label>
 		</languageKey>

@@ -157,10 +157,10 @@ $TCA['tx_tq_slideshow_media'] = array(
                 'type' => 'select',
                 'items' => array(
                     array(' --- Bitte wählen --- ',0),
-                    array('Seite',1),
-                    array('Bild',2),
-                    array('Youtube-Video',3),
-                    array('Beschreibung',4)
+                    array('LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_tca.xml:slideshow.page',1),
+                    array('LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_tca.xml:slideshow.image',2),
+                    array('LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_tca.xml:slideshow.youtube',3),
+                    array('LLL:EXT:tq_slideshow/Resources/Private/Language/locallang_tca.xml:slideshow.description',4)
                 ),
                 'size' => 1,
                 'maxitems' => 1,
