@@ -5,13 +5,9 @@
 		<description>Language labels</description>
 	</meta>
 	<data type="array">
-
         <languageKey index="default" type="array">
             <label index="tx_TqSlideshow.title">TQSlideshow</label>
-
             <label index="tx_TqSlideshow.description">Displays a Slideshow on a page</label>
-
-
             <label index="title.module.slideshow">TEQneers Slideshow Verwaltung</label>
 
             <label index="label.pager.position">Seite %s von %s</label>
@@ -34,7 +30,6 @@
             <label index="db.category">Rubrik</label>
             <label index="db.type">Typ</label>
             <label index="db.endtime">Dauer bis</label>
-
 
             <label index="status.deleted">gelöscht</label>
             <label index="status.inactive">inaktiv</label>
