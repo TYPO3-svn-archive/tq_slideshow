@@ -1,3 +1,5 @@
+deprecated
+
 Die TEQnners Slideshow (tq_slideshow) ist eine speziell für TYPO3 entwickelte Bilder Slideshow.
 Sie liefert Webentwickler einen Werkzeugkasten um mehrere Bilder innerhalb eines Conatiner auf Ihrer Webseite mit
 modernen Übergangen darzustellen.
